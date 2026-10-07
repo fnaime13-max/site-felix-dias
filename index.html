@@ -138,6 +138,8 @@ main{ position:relative; width:100%; overflow-x:hidden; }
 .logo{ display:flex; align-items:center; gap:0.75rem; min-height:44px; }
 .logo__mono{ display:grid; place-items:center; width:max(2.5rem, 40px); height:max(2.5rem, 40px); border-radius:999px; background:var(--leaf-deep); color:#fff; font-weight:700; font-size:max(0.875rem, 13px); letter-spacing:-0.01em; }
 .logo__name{ display:none; font-size:var(--fs-small); font-weight:600; text-transform:uppercase; letter-spacing:0.2em; }
+.logo__name small{ display:block; margin-top:0.3rem; font-size:max(0.6875rem, 10px); font-weight:500; letter-spacing:0.08em; text-transform:none; color:var(--muted); }
+.logo__name b{ font-weight:700; color:var(--leaf-deep); text-transform:uppercase; letter-spacing:0.12em; }
 @media (min-width:640px){ .logo__name{ display:block; } }
 .nav__right{ display:none; align-items:center; gap:2.25rem; }
 .nav__links{ display:flex; gap:2rem; }
@@ -170,20 +172,28 @@ main{ position:relative; width:100%; overflow-x:hidden; }
 .proofs li{ display:flex; align-items:center; gap:0.5rem; }
 .proofs .icon{ width:1.6em; height:1.6em; padding:0.3em; border-radius:999px; background:var(--mint); color:var(--leaf-deep); stroke-width:2.6; }
 
-.hero__stage{ position:relative; height:calc(124vw + 6rem); margin-top:2rem; overflow:hidden; }
+.hero__stage{ position:relative; height:calc(124vw + 7.5rem); margin-top:2rem; overflow:hidden; }
 .hero__name{
-  position:absolute; inset-inline:0; top:13.5rem; z-index:10;
+  position:absolute; inset-inline:0; top:15rem; z-index:10;
   display:flex; flex-direction:column; align-items:center;
   font-family:var(--font-display); font-weight:400; text-transform:uppercase;
   line-height:var(--lh-hero); letter-spacing:-0.01em; color:var(--leaf);
   font-size:10.5rem; pointer-events:none;
 }
 .hero__name .line{ display:block; white-space:nowrap; overflow:hidden; padding-top:0.16em; margin-top:-0.16em; }
-.hero__portrait{ position:absolute; z-index:20; inset:11.5rem 0 0 0; pointer-events:none; }
+.hero__portrait{ position:absolute; z-index:20; inset:13rem 0 0 0; pointer-events:none; }
 .hero__tag{ position:absolute; z-index:30; top:0.25rem; left:var(--gutter); right:var(--gutter); }
-.hero__tag strong{ display:block; font-family:var(--font-display); font-weight:400; text-transform:uppercase; font-size:var(--fs-h3); line-height:1; letter-spacing:-0.005em; color:var(--ink); }
-.hero__tag--psy{ top:6.25rem; }
-.hero__tag span{ display:block; margin-top:0.5rem; max-width:30ch; font-size:var(--fs-small); font-weight:600; text-transform:uppercase; letter-spacing:0.14em; line-height:1.45; color:var(--muted); }
+.hero__tag strong{ display:block; font-family:var(--font-display); font-weight:400; text-transform:uppercase; font-size:1.25rem; line-height:1; letter-spacing:-0.005em; color:var(--ink); }
+.hero__tag--psy{ top:5.25rem; }
+.hero__tag span{ display:block; margin-top:0.4rem; max-width:30ch; font-size:max(0.6875rem, 10px); font-weight:600; text-transform:uppercase; letter-spacing:0.12em; line-height:1.45; color:var(--muted); }
+.hero__study{ position:absolute; z-index:30; left:50%; top:0; transform:translateX(-50%); width:max-content; max-width:calc(100% - 2 * var(--gutter)); text-align:center; font-size:max(0.75rem, 11px); font-weight:500; line-height:1.5; letter-spacing:0.02em; color:#8A968F; pointer-events:none; visibility:hidden; }
+.hero__study.placed{ visibility:visible; }
+.hero__study b{ font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#6E7D74; }
+.hero__study .typed{ display:block; min-height:3em; }
+.hero__study .caret{ display:inline-block; width:1px; height:1.05em; margin-left:2px; vertical-align:-0.15em; background:currentColor; animation:caret 900ms steps(1) infinite; }
+.hero__study .caret.off{ animation:none; opacity:0; transition:opacity 400ms ease; }
+@keyframes caret{ 50%{ opacity:0; } }
+.sr-only{ position:absolute; width:1px; height:1px; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 .hero__portrait .liquid{ position:absolute; inset:0; pointer-events:auto; }
 .hero__portrait .liquid img{
   /* a imagem ocupa só o tamanho real da foto, para o degradê cair na borda dela */
@@ -469,7 +479,7 @@ main{ position:relative; width:100%; overflow-x:hidden; }
   <nav aria-label="Principal">
     <a class="logo" href="#top" aria-label="Félix Dias, início">
       <span class="logo__mono">FD</span>
-      <span class="logo__name">Félix Dias</span>
+      <span class="logo__name">Félix Dias<small>Estudante de Psicologia · Universidade <b>Federal</b> de Juiz de Fora</small></span>
     </a>
     <div class="nav__right">
       <ul class="nav__links">
@@ -524,6 +534,7 @@ main{ position:relative; width:100%; overflow-x:hidden; }
           <img src="assets/felix-recorte-v5.webp" alt="" fetchpriority="high">
         </figure>
       </div>
+      <p class="hero__study" id="hero-study"><span class="sr-only">Estudante de Psicologia na Universidade Federal de Juiz de Fora</span><span class="typed" aria-hidden="true"><span>Estudante de Psicologia</span><br><span>Universidade <b>Federal</b> de Juiz de Fora</span></span></p>
       <canvas class="hero__fibers" aria-hidden="true"></canvas>
       <div class="hero__base" aria-hidden="true"></div>
     </div>
@@ -882,6 +893,38 @@ const io = new IntersectionObserver((entries) => {
 
 /* ---------- Hero: sequência após o preloader ---------- */
 const REVEAL_DELAY = reduce ? 0 : 2500;
+/* ---------- Formação acima da cabeça: posição + digitação ---------- */
+function placeStudy(){
+  const el = $("#hero-study"), img = $(".hero__portrait img"), stage = $(".hero__stage");
+  if (!el || !img || !stage) return;
+  const ir = img.getBoundingClientRect(), sr = stage.getBoundingClientRect();
+  if (!ir.height) return;
+  // logo acima do topo do cabelo (o cabelo começa ~4% abaixo do topo da foto)
+  const top = ir.top - sr.top + ir.height * 0.04 - el.offsetHeight - 6;
+  el.style.top = Math.max(0, top) + "px";
+  el.style.left = (ir.left - sr.left + ir.width * 0.51) + "px";
+  el.classList.add("placed");
+}
+function typeStudy(){
+  const el = $("#hero-study"); if (!el) return;
+  const box = $(".typed", el);
+  const walker = document.createTreeWalker(box, NodeFilter.SHOW_TEXT);
+  const nodes = []; while (walker.nextNode()) nodes.push({ n: walker.currentNode, t: walker.currentNode.textContent });
+  if (reduce) return;
+  nodes.forEach(o => o.n.textContent = "");
+  const caret = document.createElement("span"); caret.className = "caret";
+  let i = 0, j = 0;
+  const step = () => {
+    if (i >= nodes.length){ setTimeout(() => caret.classList.add("off"), 1600); return; }
+    const o = nodes[i];
+    o.n.textContent = o.t.slice(0, ++j);
+    o.n.parentNode.insertBefore(caret, o.n.nextSibling);
+    if (j >= o.t.length){ i++; j = 0; }
+    setTimeout(step, 28 + Math.random() * 46);
+  };
+  setTimeout(step, REVEAL_DELAY ? REVEAL_DELAY + 900 : 0);
+}
+
 function heroSequence(){
   const name = $("#hero-name");
   $$(".line", name).forEach((line, li) => $$(".ch", line).forEach((ch, i) => ch.style.transitionDelay = `${li * 240 + i * 52}ms`));
@@ -1110,6 +1153,10 @@ async function init(){
   $$("[data-lines], .rv:not(.hero-rv), #voice-img, .chaos").forEach(el => io.observe(el));
   $$("[data-liquid]").forEach(liquid);
   $$("[data-slices]").forEach(heroFx);
+  const img = $(".hero__portrait img");
+  if (img){ img.complete ? placeStudy() : img.addEventListener("load", placeStudy, { once: true }); }
+  addEventListener("resize", placeStudy);
+  typeStudy();
   $$(".voice-btn").forEach(b => {
     const i = Number(b.dataset.voice);
     b.addEventListener("click", () => setVoice(i));
