@@ -351,6 +351,9 @@ main{ position:relative; width:100%; overflow-x:hidden; }
 .venture__out{ margin-top:0.6rem; font-size:var(--fs-small); font-weight:600; text-transform:uppercase; letter-spacing:0.12em; color:var(--leaf-deep); }
 .venture__cat{ margin-top:0.75rem; font-size:var(--fs-small); text-transform:uppercase; letter-spacing:0.2em; color:var(--muted); }
 @media (hover:hover){ .venture:hover h3{ color:var(--leaf-deep); } }
+.venture__link{ display:block; color:inherit; text-decoration:none; border-radius:0.75rem; }
+.venture__link:focus-visible{ outline:3px solid var(--leaf-deep); outline-offset:6px; }
+.venture__link:focus-visible h3{ color:var(--leaf-deep); }
 .work-note{ margin-top:3.5rem; font-size:var(--fs-body); color:var(--muted); }
 
 /* ============ INCLUSO ============ */
@@ -666,16 +669,18 @@ main{ position:relative; width:100%; overflow-x:hidden; }
         </article>
       </li>
       <li class="rv" style="--rv-y:60px; --rv-d:620ms; --rv-delay:120ms">
+        <a class="venture__link" href="beatriz-vance/">
         <article class="venture">
-          <figure class="liquid" data-liquid data-scale="28" role="img" aria-label="Beterraba cortada ao meio sobre fundo magenta.">
-            <img src="assets/caso-beterraba.jpg" alt="" loading="lazy">
+          <figure class="liquid" data-liquid data-scale="28" role="img" aria-label="Topo do site da Dra. Beatriz Vance: fundo verde-floresta com folhas, título em serifa e foto da nutricionista.">
+            <img src="assets/caso-beatriz-vance.jpg" alt="" loading="lazy">
           </figure>
           <div class="venture__row">
-            <div><h3>Beatriz Monteiro</h3><p class="venture__blurb">Respostas para mães com pouco tempo antes da consulta, e agendamento em um toque.</p></div>
-            <div class="venture__meta"><p class="venture__tag">Exemplo</p><p class="venture__out">Agendar consulta</p></div>
+            <div><h3>Beatriz Vance</h3><p class="venture__blurb">Abertura em que uma semente germina de 0 a 100%, e uma folha ao fundo que balança com o cursor.</p></div>
+            <div class="venture__meta"><p class="venture__tag">Site no ar</p><p class="venture__out">Abrir site →</p></div>
           </div>
-          <p class="venture__cat">Nutrição materno-infantil</p>
+          <p class="venture__cat">Emagrecimento</p>
         </article>
+        </a>
       </li>
       <li class="rv" style="--rv-y:60px; --rv-d:620ms">
         <article class="venture">
