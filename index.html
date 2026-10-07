@@ -354,6 +354,9 @@ main{ position:relative; width:100%; overflow-x:hidden; }
 .venture__link{ display:block; color:inherit; text-decoration:none; border-radius:0.75rem; }
 .venture__link:focus-visible{ outline:3px solid var(--leaf-deep); outline-offset:6px; }
 .venture__link:focus-visible h3{ color:var(--leaf-deep); }
+.venture__cta{ margin-top:1.75rem; display:grid; justify-items:start; gap:0.875rem; }
+.venture__cta .btn{ white-space:normal; text-align:left; line-height:1.25; padding-block:0.75rem; }
+.venture__hint{ max-width:40ch; font-size:var(--fs-small); color:var(--muted); }
 .work-note{ margin-top:3.5rem; font-size:var(--fs-body); color:var(--muted); }
 
 /* ============ INCLUSO ============ */
@@ -708,10 +711,14 @@ main{ position:relative; width:100%; overflow-x:hidden; }
             <div class="venture__meta"><p class="venture__tag">Próximo</p><p class="venture__out">Vamos conversar</p></div>
           </div>
           <p class="venture__cat">Seu nicho</p>
+          <div class="venture__cta">
+            <a class="btn btn--primary" data-whatsapp-msg="Olá, Félix! Quero ver um protótipo de como ficaria o meu site." href="https://wa.me/5532984666392?text=Ol%C3%A1%2C%20F%C3%A9lix%21%20Quero%20ver%20um%20prot%C3%B3tipo%20de%20como%20ficaria%20o%20meu%20site." target="_blank" rel="noopener"><svg class="icon"><use href="#i-chat"/></svg>Quero ver o protótipo do meu site</a>
+            <p class="venture__hint">Ideal para o link da bio do Instagram: transforma seguidores interessados em pacientes.</p>
+          </div>
         </article>
       </li>
     </ul>
-    <p class="work-note">Renata Couto é um exemplo fictício, criado para mostrar o processo.</p>
+    <p class="work-note">Camila Medeiros é um exemplo fictício, criado para mostrar o processo.</p>
   </section>
 
   <!-- 5. INCLUSO NO PLANO -->
@@ -794,6 +801,7 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 /* ---------- WhatsApp e ano ---------- */
 const wa = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(WHATSAPP_MENSAGEM)}`;
 $$("[data-whatsapp]").forEach(a => a.href = wa);
+$$("[data-whatsapp-msg]").forEach(a => a.href = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(a.dataset.whatsappMsg)}`);
 $("#year").textContent = new Date().getFullYear();
 
 /* ---------- Adaptive grid acima de 1920px ---------- */
