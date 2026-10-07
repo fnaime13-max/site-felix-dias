@@ -10,11 +10,11 @@
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="Félix Dias | Sites para nutricionistas, por assinatura">
 <meta property="og:description" content="Seu site profissional no ar em até 7 dias, sem pagar milhares de reais à vista.">
-<meta property="og:image" content="assets/felix-recorte-v4.webp">
+<meta property="og:image" content="assets/felix-recorte-v5.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/felix-recorte-v4.webp">
+<link rel="preload" as="image" href="assets/felix-recorte-v5.webp">
 <style>
 /* ============ TOKENS ============ */
 :root{
@@ -170,24 +170,27 @@ main{ position:relative; width:100%; overflow-x:hidden; }
 .proofs li{ display:flex; align-items:center; gap:0.5rem; }
 .proofs .icon{ width:1.6em; height:1.6em; padding:0.3em; border-radius:999px; background:var(--mint); color:var(--leaf-deep); stroke-width:2.6; }
 
-.hero__stage{ position:relative; height:124vw; margin-top:2rem; overflow:hidden; }
+.hero__stage{ position:relative; height:calc(124vw + 6rem); margin-top:2rem; overflow:hidden; }
 .hero__name{
-  position:absolute; inset-inline:0; top:7.5rem; z-index:10;
+  position:absolute; inset-inline:0; top:13.5rem; z-index:10;
   display:flex; flex-direction:column; align-items:center;
   font-family:var(--font-display); font-weight:400; text-transform:uppercase;
   line-height:var(--lh-hero); letter-spacing:-0.01em; color:var(--leaf);
   font-size:10.5rem; pointer-events:none;
 }
 .hero__name .line{ display:block; white-space:nowrap; overflow:hidden; padding-top:0.16em; margin-top:-0.16em; }
-.hero__portrait{ position:absolute; z-index:20; inset:5.5rem 0 0 0; pointer-events:none; }
+.hero__portrait{ position:absolute; z-index:20; inset:11.5rem 0 0 0; pointer-events:none; }
 .hero__tag{ position:absolute; z-index:30; top:0.25rem; left:var(--gutter); right:var(--gutter); }
 .hero__tag strong{ display:block; font-family:var(--font-display); font-weight:400; text-transform:uppercase; font-size:var(--fs-h3); line-height:1; letter-spacing:-0.005em; color:var(--ink); }
+.hero__tag--psy{ top:6.25rem; }
 .hero__tag span{ display:block; margin-top:0.5rem; max-width:30ch; font-size:var(--fs-small); font-weight:600; text-transform:uppercase; letter-spacing:0.14em; line-height:1.45; color:var(--muted); }
 .hero__portrait .liquid{ position:absolute; inset:0; pointer-events:auto; }
 .hero__portrait .liquid img{
   /* a imagem ocupa só o tamanho real da foto, para o degradê cair na borda dela */
   inset:auto auto 0 50%; width:auto; height:100%; max-width:none; aspect-ratio:1200/1789; object-fit:contain; transform:translateX(-50%);
 }
+.hero__portrait .liquid img.slice{ will-change:translate; }
+.hero__fibers{ position:absolute; inset:0; z-index:26; width:100%; height:100%; pointer-events:none; }
 .hero__base{ position:absolute; inset-inline:0; bottom:0; z-index:25; height:22%; background:linear-gradient(to bottom, rgba(251,248,239,0), var(--paper)); pointer-events:none; }
 
 @media (min-width:640px){
@@ -198,6 +201,8 @@ main{ position:relative; width:100%; overflow-x:hidden; }
   .hero__portrait{ inset:0; }
   .hero__tag{ top:1.5rem; left:auto; text-align:right; }
   .hero__tag span{ max-width:24ch; margin-left:auto; }
+  .hero__tag--psy{ top:1.5rem; left:var(--gutter); right:auto; text-align:left; }
+  .hero__tag--psy span{ margin-left:0; }
 }
 @media (min-width:1024px){
   .hero{ min-height:100svh; }
@@ -208,6 +213,7 @@ main{ position:relative; width:100%; overflow-x:hidden; }
   .hero__portrait{ top:auto; height:88vh; }
   .hero__tag{ top:max(9rem, 116px); }
   .hero__tag span{ max-width:20ch; }
+  .hero__tag--psy{ top:max(9rem, 116px); left:1.5rem; }
 }
 
 /* ============ LIQUID IMAGE ============ */
@@ -508,15 +514,17 @@ main{ position:relative; width:100%; overflow-x:hidden; }
 
     <div class="hero__stage">
       <p class="hero__tag rv hero-rv"><strong>Sites por assinatura</strong><span>Web designer especializado em sites para nutricionistas</span></p>
+      <p class="hero__tag hero__tag--psy rv hero-rv"><strong>Psicologia aplicada</strong><span>à conversão de visitantes em clientes</span></p>
       <p class="hero__name" id="hero-name" aria-hidden="true">
         <span class="line" data-letters>Félix</span>
         <span class="line" data-letters>Dias</span>
       </p>
       <div class="hero__portrait">
-        <figure class="liquid bare" data-liquid data-scale="30" role="img" aria-label="Félix Dias, de blazer azul-marinho e braços cruzados, sorrindo.">
-          <img src="assets/felix-recorte-v4.webp" alt="" fetchpriority="high">
+        <figure class="liquid bare" data-slices role="img" aria-label="Félix Dias, de blazer azul-marinho e braços cruzados, sorrindo.">
+          <img src="assets/felix-recorte-v5.webp" alt="" fetchpriority="high">
         </figure>
       </div>
+      <canvas class="hero__fibers" aria-hidden="true"></canvas>
       <div class="hero__base" aria-hidden="true"></div>
     </div>
   </section>
@@ -665,7 +673,7 @@ main{ position:relative; width:100%; overflow-x:hidden; }
       <li class="rv" style="--rv-y:60px; --rv-d:620ms">
         <a class="venture__link" href="lucas-andrade/">
         <article class="venture">
-          <figure class="liquid" data-liquid data-scale="28" role="img" aria-label="Topo do site de Lucas Andrade: fundo grafite, linha de batimentos animada, título em caixa-alta e foto do nutricionista.">
+          <figure class="liquid" role="img" aria-label="Topo do site de Lucas Andrade: fundo grafite, linha de batimentos animada, título em caixa-alta e foto do nutricionista.">
             <img src="assets/caso-lucas-andrade.jpg" alt="" loading="lazy">
           </figure>
           <div class="venture__row">
@@ -679,7 +687,7 @@ main{ position:relative; width:100%; overflow-x:hidden; }
       <li class="rv" style="--rv-y:60px; --rv-d:620ms; --rv-delay:120ms">
         <a class="venture__link" href="beatriz-vance/">
         <article class="venture">
-          <figure class="liquid" data-liquid data-scale="28" role="img" aria-label="Topo do site da Dra. Beatriz Vance: fundo verde-floresta com folhas, título em serifa e foto da nutricionista.">
+          <figure class="liquid" role="img" aria-label="Topo do site da Dra. Beatriz Vance: fundo verde-floresta com folhas, título em serifa e foto da nutricionista.">
             <img src="assets/caso-beatriz-vance.jpg" alt="" loading="lazy">
           </figure>
           <div class="venture__row">
@@ -693,8 +701,8 @@ main{ position:relative; width:100%; overflow-x:hidden; }
       <li class="rv" style="--rv-y:60px; --rv-d:620ms">
         <a class="venture__link" href="camila-medeiros/">
         <article class="venture">
-          <figure class="liquid" data-liquid data-scale="28" role="img" aria-label="Topo do site da Dra. Camila Medeiros: fundo creme, título em serifa com destaque terracota, anéis ao redor da foto da nutricionista.">
-            <img src="assets/caso-camila-medeiros.jpg" alt="" loading="lazy">
+          <figure class="liquid" role="img" aria-label="Topo do site da Dra. Camila Medeiros: fundo creme, título em serifa com destaque terracota, anéis ao redor da foto da nutricionista.">
+            <img src="assets/caso-camila-medeiros-v2.jpg" alt="" loading="lazy">
           </figure>
           <div class="venture__row">
             <div><h3>Camila Medeiros</h3><p class="venture__blurb">Abertura com contador de 0 a 100%, uma superfície que se agita com o cursor e uma pausa guiada de 1 minuto antes do prato.</p></div>
@@ -939,6 +947,123 @@ function liquid(fig){
   host.addEventListener("pointerleave", () => { if (finePointer.matches && !reduce) go(0); });
 }
 
+/* ---------- Hero: corpo em faixas + fios de luz saindo da cabeça ---------- */
+// Área da cabeça na foto (frações da imagem): onde os fios substituem as faixas
+const HEAD = { x0: 0.30, x1: 0.72, y0: 0.03, y1: 0.42, cx: 0.51, cy: 0.22, rx: 0.17, ry: 0.15 };
+const FIBER_COLORS = ["#ff3fd8", "#9b5cff", "#ff8a3d", "#ffb000", "#3d7bff", "#ff4f8b", "#c44dff"];
+function heroFx(fig){
+  const base = $("img", fig), canvas = $(".hero__fibers"), stage = $(".hero__stage");
+  if (!base || !canvas || reduce) return;
+
+  // 1) faixas: cópias da foto, cada uma recortada numa tira horizontal
+  const N = 18, strips = [];
+  for (let i = 0; i < N; i++){
+    const im = base.cloneNode();
+    im.removeAttribute("fetchpriority");
+    im.classList.add("slice");
+    const top = Math.max(0, i / N * 100 - 0.05), bottom = Math.max(0, 100 - (i + 1) / N * 100 - 0.05);
+    im.style.clipPath = `inset(${top}% 0 ${bottom}% 0)`;
+    fig.appendChild(im);
+    strips.push({ el: im, x: 0, v: 0, to: 0, c: (i + 0.5) / N });
+  }
+  base.style.visibility = "hidden";
+
+  // 2) três anéis finos que orbitam a cabeça
+  const rings = [
+    { color: "#1FA463", rx: 0.36, ry: 0.070, tilt: -0.16, y: -0.02, speed: 0.9 },
+    { color: "#0B7A42", rx: 0.42, ry: 0.088, tilt: 0.10,  y: 0.02,  speed: -0.7 },
+    { color: "#E8A800", rx: 0.48, ry: 0.106, tilt: -0.04, y: 0.06,  speed: 0.55 },
+  ];
+  const ctx = canvas.getContext("2d");
+  let k = 0, kv = 0, kTo = 0, mx = 0, my = 0, vel = 0, running = false, last = performance.now();
+
+  const sizeCanvas = () => {
+    const dpr = Math.min(2, devicePixelRatio || 1);
+    const w = Math.round(canvas.clientWidth * dpr), h = Math.round(canvas.clientHeight * dpr);
+    if (canvas.width !== w || canvas.height !== h){ canvas.width = w; canvas.height = h; }
+    return dpr;
+  };
+
+  const frame = (now) => {
+    const dt = Math.min(0.032, (now - last) / 1000); last = now;
+    let busy = false;
+    // molas das faixas (soltas, com leve sobra)
+    for (const s of strips){
+      const a = -190 * (s.x - s.to) - 15 * s.v;
+      s.v += a * dt; s.x += s.v * dt;
+      if (Math.abs(s.v) > 0.05 || Math.abs(s.x - s.to) > 0.05){ busy = true; s.el.style.translate = `${s.x.toFixed(2)}px 0`; }
+      else if (s.x !== s.to){ s.x = s.to; s.el.style.translate = s.to ? `${s.to}px 0` : ""; }
+    }
+    // mola da intensidade dos fios
+    const ka = -120 * (k - kTo) - 16 * kv;
+    kv += ka * dt; k += kv * dt;
+    vel *= 0.92;
+    const dpr = sizeCanvas();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (k > 0.002 || kTo > 0){
+      busy = true;
+      const cr = canvas.getBoundingClientRect(), ir = base.getBoundingClientRect();
+      const W = ir.width, H = ir.height, ox = ir.left - cr.left, oy = ir.top - cr.top;
+      const hx = ox + W * HEAD.cx, hy = oy + H * 0.13;
+      const t = now / 1000, kk = Math.min(1, Math.max(0, k)), TAU = Math.PI * 2;
+      ctx.lineCap = "round";
+      ctx.save(); ctx.scale(dpr, dpr);
+      for (const r of rings){
+        const rx = W * r.rx * kk, ry = H * r.ry * kk, cy = hy + H * r.y;
+        if (rx < 1) continue;
+        const ring = (a0, a1) => { ctx.beginPath(); ctx.ellipse(hx, cy, rx, ry, r.tilt, a0, a1); ctx.stroke(); };
+        ctx.strokeStyle = r.color;
+        // metade de trás, bem apagada (passa atrás da cabeça)
+        ctx.globalAlpha = 0.25 * kk; ctx.lineWidth = 1.6; ring(Math.PI, TAU);
+        // metade da frente
+        ctx.globalAlpha = 0.75 * kk; ctx.lineWidth = 2; ring(0, Math.PI);
+        // um traço mais claro que corre pelo anel
+        const head = ((t * r.speed) % TAU + TAU) % TAU;
+        ctx.globalAlpha = (Math.sin(head) > 0 ? 0.95 : 0.3) * kk; ctx.lineWidth = 3.2;
+        ring(head - 0.7, head);
+      }
+      ctx.restore(); ctx.globalAlpha = 1;
+    }
+    if (busy || Math.abs(kv) > 0.001) requestAnimationFrame(frame);
+    else running = false;
+  };
+  const kick = () => { if (!running){ running = true; last = performance.now(); requestAnimationFrame(frame); } };
+
+  let headState = "out", headTimer;
+  stage.addEventListener("pointermove", (e) => {
+    if (!finePointer.matches) return;
+    const ir = base.getBoundingClientRect(), cr = canvas.getBoundingClientRect();
+    const fx = (e.clientX - ir.left) / ir.width, fy = (e.clientY - ir.top) / ir.height;
+    const nx = e.clientX - cr.left, ny = e.clientY - cr.top;
+    vel = Math.min(1.5, vel + Math.hypot(nx - mx, ny - my) / 120);
+    mx = nx; my = ny;
+    const onImg = fx >= 0 && fx <= 1 && fy >= 0 && fy <= 1;
+    const onHead = fx > HEAD.x0 && fx < HEAD.x1 && fy > HEAD.y0 && fy < HEAD.y1;
+    const maxShift = ir.width * 0.09;
+    const slide = () => strips.forEach((s, i) => {
+      // as faixas perto do cursor deslizam para a direita
+      if (!onImg){ s.to = 0; return; }
+      const d = (s.c - fy) / 0.14;
+      s.to = maxShift * Math.exp(-d * d) * (i % 2 ? 1 : 0.55);
+    });
+    if (onHead){
+      // na cabeça: as faixas passam uma vez, voltam ao lugar e só então os anéis aparecem
+      if (headState === "out"){
+        headState = "pass"; kTo = 0;
+        clearTimeout(headTimer);
+        headTimer = setTimeout(() => { headState = "rings"; strips.forEach(s => s.to = 0); kTo = 1; kick(); }, 420);
+      }
+      if (headState === "pass") slide();
+    } else {
+      clearTimeout(headTimer); headState = "out"; kTo = 0;
+      slide();
+    }
+    kick();
+  });
+  stage.addEventListener("pointerleave", () => { clearTimeout(headTimer); headState = "out"; kTo = 0; strips.forEach(s => s.to = 0); kick(); });
+  addEventListener("resize", () => { if (running) sizeCanvas(); });
+}
+
 /* ---------- Perguntas da paciente ---------- */
 const VOICES = [
   { q: "Ela entende o meu caso?", tag: "Clareza", a: "A primeira tela fala da dor real da sua paciente, com as palavras dela. Termo técnico fica para a consulta.", img: "assets/caso-verde.jpg" },
@@ -984,6 +1109,7 @@ async function init(){
   $$("[data-lines], #hero-h1").forEach(splitLines);
   $$("[data-lines], .rv:not(.hero-rv), #voice-img, .chaos").forEach(el => io.observe(el));
   $$("[data-liquid]").forEach(liquid);
+  $$("[data-slices]").forEach(heroFx);
   $$(".voice-btn").forEach(b => {
     const i = Number(b.dataset.voice);
     b.addEventListener("click", () => setVoice(i));
