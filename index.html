@@ -1,0 +1,981 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Félix Dias | Sites de alta conversão para nutricionistas, por assinatura</title>
+<meta name="description" content="Site de alta conversão para nutricionistas lotarem a agenda de consultas particulares. Desenvolvimento, hospedagem e otimização para tráfego em um plano mensal, sem taxa de adesão.">
+<meta name="theme-color" content="#FBF8EF">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Félix Dias | Sites para nutricionistas, por assinatura">
+<meta property="og:description" content="Seu site profissional no ar em até 7 dias, sem pagar milhares de reais à vista.">
+<meta property="og:image" content="assets/felix-recorte-v4.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/felix-recorte-v4.webp">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --paper:#FBF8EF;        /* fundo: branco quente */
+  --paper-2:#F2EDDD;
+  --ink:#123524;          /* texto: verde-floresta profundo (nunca preto) */
+  --muted:#56695E;
+  --line:rgba(18,53,36,0.12);
+  --line-strong:rgba(18,53,36,0.24);
+  --leaf:#1FA463;         /* verde vivo: nome gigante, marcas grandes */
+  --leaf-deep:#0B7A42;    /* verde de ação: botões e links (AA com branco) */
+  --mint:#DFF3E5;
+  --forest:#0F3B27;
+  --sun:#FFCC3F;          /* amarelo-sol: destaques */
+  --tangerine:#FF8A3D;    /* só marcadores, nunca texto */
+  --on-dark:#F6F3E6;
+  --on-dark-muted:rgba(246,243,230,0.76);
+  --line-dark:rgba(246,243,230,0.16);
+
+  --font-display:"Anton", sans-serif;
+  --font-sans:"Onest", sans-serif;
+  --gutter:2.5rem;
+  --section:9rem;
+  --fs-hero:28rem;   --lh-hero:0.78;
+  --fs-display:6rem; --lh-display:0.92;
+  --fs-h1:5rem;      --lh-h1:0.95;
+  --fs-h2:3.25rem;   --lh-h2:1;
+  --fs-h3:1.625rem;  --lh-h3:1.2;
+  --fs-lead:max(1.3125rem, 17px); --lh-lead:1.5;
+  --fs-body:max(1.0625rem, 15px); --lh-body:1.6;
+  --fs-small:max(0.8125rem, 12px);
+  --expo:cubic-bezier(0.16,1,0.3,1);
+  --quart:cubic-bezier(0.165,0.84,0.44,1);
+  --wipe:cubic-bezier(0.22,1,0.36,1);
+}
+
+/* ============ ADAPTIVE GRID ============ */
+html{ font-size:16px; background:var(--paper); scrollbar-color:var(--leaf-deep) var(--paper-2); }
+@media (max-width:1920px){ html{ font-size:0.833333vw; } }
+@media (max-width:1440px){ html{ font-size:1.111111vw; } }
+@media (max-width:1024px){ html{ font-size:1.5625vw; } }
+@media (max-width:640px){
+  html{ font-size:4.444444vw; }
+  :root{ --gutter:16px; --section:6rem; }
+}
+
+/* ============ RESET ============ */
+*{ margin:0; padding:0; box-sizing:border-box; }
+img,video{ display:block; max-width:100%; }
+ul,ol{ list-style:none; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; appearance:none; }
+table{ border-collapse:collapse; width:100%; }
+html.lenis, html.lenis body{ height:auto; }
+.lenis.lenis-smooth{ scroll-behavior:auto !important; }
+.lenis.lenis-stopped{ overflow:hidden; }
+
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--font-sans); font-size:var(--fs-body); line-height:var(--lh-body);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:hidden; caret-color:var(--leaf-deep);
+}
+::selection{ background:var(--sun); color:var(--ink); }
+:focus-visible{ outline:2px solid var(--leaf-deep); outline-offset:4px; border-radius:4px; }
+.on-dark :focus-visible{ outline-color:var(--sun); }
+main{ position:relative; width:100%; overflow-x:hidden; }
+.icon{ width:1.25em; height:1.25em; flex:none; fill:none; stroke:currentColor; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
+
+/* ============ TEXTO / REVELAÇÕES ============ */
+.mask{ display:block; overflow:hidden; padding-top:0.14em; margin-top:-0.14em; padding-bottom:0.06em; margin-bottom:-0.06em; }
+.mask > .inner{ display:block; transform:translateY(110%); opacity:0; transition:transform 900ms var(--expo), opacity 900ms var(--expo); }
+.revealed .mask > .inner{ transform:none; opacity:1; }
+.ch{ display:inline-block; transform:translateY(100%); opacity:0; transition:transform 900ms var(--expo), opacity 900ms var(--expo); }
+.go .ch{ transform:none; opacity:1; }
+.rv{ opacity:0; transform:translateY(var(--rv-y,16px)); transition:opacity var(--rv-d,520ms) var(--expo), transform var(--rv-d,520ms) var(--expo); transition-delay:var(--rv-delay,0ms); }
+.rv.in{ opacity:1; transform:none; }
+
+.h-sec{ font-family:var(--font-display); font-weight:400; text-transform:uppercase; letter-spacing:-0.01em; font-size:var(--fs-h2); line-height:0.98; text-wrap:balance; }
+@media (min-width:640px){ .h-sec.big{ font-size:var(--fs-h1); line-height:var(--lh-h1); } }
+.sec-intro{ margin-top:1.75rem; max-width:52ch; font-size:var(--fs-lead); line-height:var(--lh-lead); color:var(--muted); }
+.section{ padding:var(--section) var(--gutter); }
+.sec-head{ display:flex; flex-direction:column; gap:1.5rem; }
+@media (min-width:640px){ .sec-head{ flex-direction:row; align-items:flex-end; justify-content:space-between; } }
+.sec-label{ font-size:var(--fs-small); text-transform:uppercase; letter-spacing:0.2em; color:var(--muted); }
+
+/* ============ BOTÕES ============ */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:0.625rem;
+  min-height:max(3.5rem, 48px); padding:0 max(1.75rem, 20px); border-radius:999px;
+  font-size:max(1.0625rem, 15px); font-weight:600; letter-spacing:-0.005em; white-space:nowrap;
+  transition:transform 160ms ease-out, background-color 220ms ease-out, color 220ms ease-out, box-shadow 220ms ease-out;
+}
+.btn:active{ transform:scale(0.97); }
+.btn .icon{ transition:transform 260ms var(--expo); }
+.btn--primary{ background:var(--leaf-deep); color:#fff; box-shadow:0 10px 22px -12px rgba(18,53,36,0.45); }
+.btn--ghost{ color:var(--ink); box-shadow:inset 0 0 0 1.5px var(--line-strong); }
+.btn--sun{ background:var(--sun); color:var(--ink); box-shadow:0 10px 24px -14px rgba(6,26,16,0.6); }
+@media (hover:hover){
+  .btn--primary:hover{ background:#09693A; }
+  .btn--ghost:hover{ background:var(--paper-2); box-shadow:inset 0 0 0 1.5px var(--ink); }
+  .btn--sun:hover{ background:#FFD663; }
+  .btn:hover .icon-arrow{ transform:translate(2px,-2px); }
+}
+
+/* ============ PRELOADER ============ */
+.preloader{ position:fixed; inset:0; z-index:100; display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-end; gap:0.75rem; padding:var(--gutter); transition:transform 650ms var(--wipe); }
+.preloader::before{ content:""; position:absolute; inset:0; z-index:-10; background:var(--paper); }
+.preloader.wipe{ transform:translateY(-100%); }
+.preloader.done{ pointer-events:none; }
+.pre__brand{ font-family:var(--font-display); font-size:var(--fs-h3); text-transform:uppercase; line-height:1; transition:opacity 300ms ease-out; }
+.pre__count{ font-family:var(--font-display); font-size:7.5rem; line-height:1; font-variant-numeric:tabular-nums; transition:opacity 300ms ease-out; }
+.pre__count i{ font-style:normal; color:var(--leaf); }
+.preloader.fade .pre__brand, .preloader.fade .pre__count{ opacity:0; }
+@media (min-width:640px){ .preloader{ flex-direction:row; align-items:flex-end; justify-content:space-between; gap:1rem; } }
+
+/* ============ NAV ============ */
+.site-nav{ position:fixed; inset-inline:0; top:0; z-index:50; pointer-events:none; transition:background-color 300ms ease, box-shadow 300ms ease; }
+.site-nav.scrolled{ background:rgba(251,248,239,0.96); box-shadow:0 1px 0 var(--line); }
+.site-nav nav{ pointer-events:auto; display:flex; align-items:center; justify-content:space-between; gap:2rem; padding:1.25rem var(--gutter); }
+.logo{ display:flex; align-items:center; gap:0.75rem; min-height:44px; }
+.logo__mono{ display:grid; place-items:center; width:max(2.5rem, 40px); height:max(2.5rem, 40px); border-radius:999px; background:var(--leaf-deep); color:#fff; font-weight:700; font-size:max(0.875rem, 13px); letter-spacing:-0.01em; }
+.logo__name{ display:none; font-size:var(--fs-small); font-weight:600; text-transform:uppercase; letter-spacing:0.2em; }
+@media (min-width:640px){ .logo__name{ display:block; } }
+.nav__right{ display:none; align-items:center; gap:2.25rem; }
+.nav__links{ display:flex; gap:2rem; }
+.nav__links a{ position:relative; display:inline-flex; align-items:center; min-height:44px; font-size:var(--fs-small); font-weight:600; text-transform:uppercase; letter-spacing:0.16em; color:var(--muted); transition:color 250ms ease; }
+.nav__links a::after{ content:""; position:absolute; bottom:calc(50% - 1.05em); left:0; height:2px; width:0; border-radius:2px; background:var(--leaf); transition:width 300ms var(--expo); }
+@media (hover:hover){ .nav__links a:hover{ color:var(--ink); } .nav__links a:hover::after{ width:100%; } }
+.nav__cta{ min-height:max(2.75rem, 44px); padding:0 max(1.25rem, 16px); font-size:var(--fs-small); }
+.burger{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.375rem; width:44px; height:44px; position:relative; z-index:60; }
+.burger span{ display:block; height:2px; width:1.5rem; border-radius:2px; background:var(--ink); transition:transform 420ms var(--expo), opacity 300ms ease; }
+.burger[aria-expanded="true"] span:nth-child(1){ transform:translateY(calc(0.375rem + 2px)) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+.burger[aria-expanded="true"] span:nth-child(3){ transform:translateY(calc(-0.375rem - 2px)) rotate(-45deg); }
+@media (min-width:1024px){ .nav__right{ display:flex; } .burger{ display:none; } }
+.menu{ position:fixed; inset:0; z-index:50; background:var(--paper); display:flex; flex-direction:column; justify-content:center; gap:2.5rem; padding-inline:var(--gutter); opacity:0; pointer-events:none; transition:opacity 450ms ease-out; }
+.menu.open{ opacity:1; pointer-events:auto; }
+.menu li, .menu .btn{ transform:translateY(48px); opacity:0; transition:transform 420ms var(--expo), opacity 420ms var(--expo); }
+.menu.open li, .menu.open .btn{ transform:none; opacity:1; }
+.menu ul a{ display:block; padding-block:0.4rem; font-family:var(--font-display); font-size:var(--fs-h2); text-transform:uppercase; line-height:1; }
+.menu .btn{ align-self:flex-start; }
+@media (min-width:1024px){ .menu{ display:none; } }
+
+/* ============ HERO ============ */
+.hero{ position:relative; display:flex; flex-direction:column; }
+.hero__copy{ position:relative; z-index:30; padding:7.5rem var(--gutter) 0; }
+.hero h1{ max-width:21ch; font-size:2.125rem; line-height:1.1; font-weight:600; letter-spacing:-0.025em; text-wrap:balance; }
+.hero h1 .tail{ color:var(--leaf-deep); }
+.hero__sub{ margin-top:1.5rem; max-width:46ch; font-size:var(--fs-lead); line-height:var(--lh-lead); color:var(--muted); }
+.hero__ctas{ margin-top:2rem; display:flex; flex-direction:column; gap:0.75rem; }
+.proofs{ margin-top:1.75rem; display:flex; flex-wrap:wrap; gap:0.75rem 1.5rem; font-size:var(--fs-small); font-weight:600; text-transform:uppercase; letter-spacing:0.12em; }
+.proofs li{ display:flex; align-items:center; gap:0.5rem; }
+.proofs .icon{ width:1.6em; height:1.6em; padding:0.3em; border-radius:999px; background:var(--mint); color:var(--leaf-deep); stroke-width:2.6; }
+
+.hero__stage{ position:relative; height:124vw; margin-top:2rem; overflow:hidden; }
+.hero__name{
+  position:absolute; inset-inline:0; top:7.5rem; z-index:10;
+  display:flex; flex-direction:column; align-items:center;
+  font-family:var(--font-display); font-weight:400; text-transform:uppercase;
+  line-height:var(--lh-hero); letter-spacing:-0.01em; color:var(--leaf);
+  font-size:10.5rem; pointer-events:none;
+}
+.hero__name .line{ display:block; white-space:nowrap; overflow:hidden; padding-top:0.16em; margin-top:-0.16em; }
+.hero__portrait{ position:absolute; z-index:20; inset:5.5rem 0 0 0; pointer-events:none; }
+.hero__tag{ position:absolute; z-index:30; top:0.25rem; left:var(--gutter); right:var(--gutter); }
+.hero__tag strong{ display:block; font-family:var(--font-display); font-weight:400; text-transform:uppercase; font-size:var(--fs-h3); line-height:1; letter-spacing:-0.005em; color:var(--ink); }
+.hero__tag span{ display:block; margin-top:0.5rem; max-width:30ch; font-size:var(--fs-small); font-weight:600; text-transform:uppercase; letter-spacing:0.14em; line-height:1.45; color:var(--muted); }
+.hero__portrait .liquid{ position:absolute; inset:0; pointer-events:auto; }
+.hero__portrait .liquid img{
+  /* a imagem ocupa só o tamanho real da foto, para o degradê cair na borda dela */
+  inset:auto auto 0 50%; width:auto; height:100%; max-width:none; aspect-ratio:1200/1789; object-fit:contain; transform:translateX(-50%);
+}
+.hero__base{ position:absolute; inset-inline:0; bottom:0; z-index:25; height:22%; background:linear-gradient(to bottom, rgba(251,248,239,0), var(--paper)); pointer-events:none; }
+
+@media (min-width:640px){
+  .hero h1{ font-size:3rem; }
+  .hero__ctas{ flex-direction:row; flex-wrap:wrap; }
+  .hero__stage{ height:84vw; }
+  .hero__name{ font-size:var(--fs-hero); top:9rem; }
+  .hero__portrait{ inset:0; }
+  .hero__tag{ top:1.5rem; left:auto; text-align:right; }
+  .hero__tag span{ max-width:24ch; margin-left:auto; }
+}
+@media (min-width:1024px){
+  .hero{ min-height:100svh; }
+  .hero__copy{ width:50%; padding-top:max(9rem, 120px); padding-bottom:4rem; }
+  .hero h1{ font-size:3.125rem; }
+  .hero__stage{ position:absolute; top:0; right:0; bottom:0; width:52%; height:auto; margin:0; }
+  .hero__name{ top:auto; bottom:0; transform:translateY(6%); font-size:min(25vw, 46vh); }
+  .hero__portrait{ top:auto; height:88vh; }
+  .hero__tag{ top:max(9rem, 116px); }
+  .hero__tag span{ max-width:20ch; }
+}
+
+/* ============ LIQUID IMAGE ============ */
+.liquid{ position:relative; overflow:hidden; margin:0; background:var(--paper-2); }
+.liquid.bare{ background:none; }
+.liquid svg.fx{ position:absolute; width:0; height:0; }
+.liquid img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.liquid .glow{ position:absolute; inset:0; opacity:0; pointer-events:none; background:linear-gradient(120deg, transparent 30%, color-mix(in srgb, var(--sun) 40%, transparent) 50%, transparent 70%); mix-blend-mode:soft-light; }
+.liquid .vignette{ position:absolute; inset:0; pointer-events:none; background:radial-gradient(120% 120% at 50% 120%, color-mix(in srgb, var(--ink) 28%, transparent), transparent 60%); }
+
+/* ============ MARQUEE ============ */
+.marquee{ overflow:hidden; background:var(--sun); padding-block:1.75rem; }
+.marquee__track{ display:flex; width:max-content; flex-wrap:nowrap; animation:marquee 26s linear infinite; }
+.marquee__item{ display:flex; align-items:center; font-family:var(--font-display); font-size:var(--fs-h2); line-height:1; text-transform:uppercase; letter-spacing:-0.01em; white-space:nowrap; color:var(--ink); }
+.marquee__item::after{ content:""; margin-inline:2rem; width:0.75rem; height:0.75rem; border-radius:999px; background:var(--leaf-deep); }
+@keyframes marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+/* ============ TRÁFEGO FRIO x QUENTE ============ */
+.traffic__grid{ margin-top:4rem; display:grid; gap:3.5rem; }
+.lane h3{ display:flex; align-items:center; gap:0.75rem; font-size:var(--fs-h3); line-height:var(--lh-h3); font-weight:600; letter-spacing:-0.015em; }
+.lane h3::before{ content:""; width:0.75rem; height:0.75rem; border-radius:999px; background:var(--tangerine); flex:none; }
+.lane--hot h3::before{ background:var(--leaf); }
+.lane p{ margin-top:0.75rem; max-width:48ch; color:var(--muted); }
+.chaos{ position:relative; margin-top:2rem; height:19rem; border-radius:1.25rem; background:var(--paper-2); overflow:hidden; }
+.chip{
+  position:absolute; left:var(--x); top:var(--y); transform:rotate(var(--r));
+  padding:0.6rem 1.05rem; border-radius:999px; background:#fff;
+  font-size:var(--fs-small); font-weight:600; white-space:nowrap; color:var(--muted);
+  box-shadow:0 8px 20px -10px rgba(18,53,36,0.35);
+  transition:transform 1200ms var(--expo);
+}
+.chip--you{ background:var(--paper); color:var(--ink); box-shadow:inset 0 0 0 1.5px var(--line-strong), 0 2px 6px -2px rgba(18,53,36,0.2); opacity:0.75; }
+.chaos.in .chip{ transform:rotate(var(--r)) translate(var(--dx,0), var(--dy,0)); }
+.funnel{ margin-top:2rem; border-radius:1.25rem; background:var(--mint); padding:2.25rem 2rem; }
+.funnel ol{ position:relative; display:grid; gap:2rem; }
+.funnel ol::before{ content:""; position:absolute; left:calc(1.125rem - 1px); top:1.25rem; bottom:1.25rem; width:2px; background:linear-gradient(var(--leaf), var(--leaf-deep)); }
+.funnel li{ position:relative; display:grid; grid-template-columns:2.25rem 1fr; column-gap:1rem; align-items:start; }
+.funnel .dot{ display:grid; place-items:center; width:2.25rem; height:2.25rem; border-radius:999px; background:var(--paper); box-shadow:inset 0 0 0 2px var(--leaf); color:var(--leaf-deep); }
+.funnel li:last-child .dot{ background:var(--leaf-deep); box-shadow:none; color:#fff; }
+.funnel .dot .icon{ width:1.1rem; height:1.1rem; stroke-width:2.4; }
+.funnel strong{ display:block; font-weight:600; line-height:1.3; padding-top:0.35rem; }
+.funnel span.cap{ display:block; margin-top:0.25rem; font-size:var(--fs-small); color:var(--muted); line-height:1.5; }
+@media (min-width:1024px){ .traffic__grid{ grid-template-columns:1fr 1fr; gap:var(--gutter); } }
+
+/* ============ COMPARATIVO ============ */
+.compare{ background:var(--forest); color:var(--on-dark); }
+.compare .sec-intro{ color:var(--on-dark-muted); }
+.ctable{ margin-top:4rem; }
+.ctable th, .ctable td{ text-align:left; vertical-align:top; padding:1.75rem 1.5rem; border-bottom:1px solid var(--line-dark); }
+.ctable thead th{ padding-block:1rem; font-size:var(--fs-small); font-weight:600; text-transform:uppercase; letter-spacing:0.16em; color:var(--on-dark-muted); }
+.ctable thead th.us{ color:var(--ink); background:var(--sun); border-radius:0.75rem 0.75rem 0 0; border-bottom-color:transparent; }
+.ctable th[scope="row"]{ font-size:var(--fs-body); font-weight:600; width:24%; padding-left:0; }
+.ctable td{ font-size:var(--fs-h3); line-height:1.3; letter-spacing:-0.01em; }
+.ctable td.them{ color:var(--on-dark-muted); font-size:var(--fs-lead); line-height:1.45; }
+.ctable thead th.them-h{ opacity:0.85; }
+@media (min-width:768px){ .ctable td.us{ width:42%; } }
+.ctable .zero{ display:block; white-space:nowrap; font-family:var(--font-display); font-weight:400; font-size:7rem; line-height:0.9; letter-spacing:-0.01em; color:var(--sun); }
+.ctable .zero-cap{ display:block; margin-top:0.75rem; max-width:24ch; }
+.ctable td.us{ background:rgba(255,204,63,0.1); color:var(--on-dark); font-weight:600; }
+.ctable td.us em{ font-style:normal; color:var(--sun); }
+.ctable tbody tr:last-child td.us{ border-radius:0 0 0.75rem 0.75rem; }
+.compare__cta{ margin-top:3.5rem; display:flex; flex-wrap:wrap; align-items:center; gap:1rem 2rem; }
+.compare__cta p{ max-width:40ch; color:var(--on-dark-muted); }
+@media (max-width:767px){
+  .ctable thead{ display:none; }
+  .ctable, .ctable tbody, .ctable tr, .ctable th, .ctable td{ display:block; width:100%; }
+  .ctable tr{ padding-block:1.75rem; border-bottom:1px solid var(--line-dark); }
+  .ctable th, .ctable td{ border:0; padding:0; }
+  .ctable th[scope="row"]{ width:auto; font-size:var(--fs-small); text-transform:uppercase; letter-spacing:0.16em; color:var(--on-dark-muted); }
+  .ctable td{ margin-top:0.75rem; }
+  .ctable td::before{ content:attr(data-label); display:block; margin-bottom:0.3rem; font-size:var(--fs-small); font-weight:600; letter-spacing:0.04em; color:var(--on-dark-muted); }
+  .ctable td.us{ padding:1rem 1.125rem; border-radius:0.75rem !important; }
+  .ctable td.us::before{ color:var(--sun); }
+}
+
+/* ============ MÉTODO ============ */
+.story{ display:grid; gap:3rem; }
+.principles li{ border-top:1px solid var(--line); padding:2rem 0; }
+.principles li:last-child{ border-bottom:1px solid var(--line); }
+.principles h3{ font-size:var(--fs-h3); line-height:var(--lh-h3); font-weight:600; letter-spacing:-0.015em; }
+.principles p{ margin-top:0.75rem; max-width:52ch; color:var(--muted); }
+@media (min-width:1024px){
+  .story{ grid-template-columns:repeat(12, 1fr); gap:var(--gutter); }
+  .story__left, .story__right{ grid-column:span 6; }
+  .story__right{ padding-top:0.5rem; }
+}
+
+/* ============ ANATOMIA ============ */
+.anatomy{ background:var(--mint); }
+.anatomy .sec-intro{ color:#4A5F53; }
+.anat{ margin-top:4.5rem; display:grid; grid-template-columns:minmax(0,1fr); gap:4rem; align-items:start; }
+.phone-wrap{ position:relative; justify-self:center; padding-inline:2.25rem; }
+.phone{ width:min(17.5rem, calc(100vw - 2 * var(--gutter) - 4.5rem)); border-radius:2.6rem; background:var(--forest); padding:0.65rem; box-shadow:0 40px 60px -30px rgba(15,59,39,0.55), 0 12px 24px -12px rgba(15,59,39,0.35); }
+.screen{ border-radius:2.05rem; background:var(--paper); padding:1.6rem 1.15rem 1.15rem; font-size:max(0.75rem, 11px); line-height:1.4; }
+.screen__notch{ width:30%; height:0.35rem; margin:-0.6rem auto 1.1rem; border-radius:999px; background:var(--line-strong); }
+.scr-block{ position:relative; }
+.scr-block + .scr-block{ margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line); }
+.scr-who{ display:flex; align-items:center; gap:0.65rem; }
+.scr-avatar{ display:grid; place-items:center; width:2.6rem; height:2.6rem; border-radius:999px; background:var(--leaf-deep); color:#fff; font-weight:700; font-size:max(0.8rem, 11px); flex:none; }
+.scr-name{ font-weight:700; font-size:max(0.9rem, 12px); }
+.scr-crn{ color:var(--muted); }
+.scr-bio{ margin-top:0.55rem; color:var(--muted); }
+.scr-tags{ margin-top:0.6rem; display:flex; flex-wrap:wrap; gap:0.3rem; }
+.scr-tags span{ padding:0.15rem 0.5rem; border-radius:999px; background:var(--mint); color:var(--leaf-deep); font-weight:600; font-size:max(0.68rem, 10px); }
+.scr-title{ font-weight:700; }
+.scr-steps{ margin-top:0.45rem; display:grid; gap:0.3rem; counter-reset:s; }
+.scr-steps li{ display:flex; gap:0.45rem; align-items:center; color:var(--muted); }
+.scr-steps li::before{ counter-increment:s; content:counter(s); display:grid; place-items:center; width:1.1rem; height:1.1rem; border-radius:999px; background:var(--paper-2); font-size:max(0.65rem, 9px); font-weight:700; color:var(--ink); flex:none; }
+.scr-btn{ display:flex; align-items:center; justify-content:center; gap:0.35rem; margin-top:1.1rem; padding:0.7rem; border-radius:999px; background:var(--leaf-deep); color:#fff; font-weight:600; }
+.scr-btn .icon{ width:1.1em; height:1.1em; }
+.scr-note{ margin-top:0.6rem; text-align:center; color:var(--muted); font-size:max(0.65rem, 10px); }
+.pin{ position:absolute; top:0; display:grid; place-items:center; width:1.9rem; height:1.9rem; border-radius:999px; background:var(--sun); color:var(--ink); font-weight:700; font-size:max(0.85rem, 12px); box-shadow:0 6px 14px -6px rgba(18,53,36,0.4); }
+.pin--l{ left:-2.95rem; } .pin--r{ right:-2.95rem; }
+.anat__parts{ display:grid; gap:3rem; }
+.part{ display:grid; grid-template-columns:2.25rem 1fr; column-gap:1.25rem; }
+.part .num{ display:grid; place-items:center; width:2.25rem; height:2.25rem; border-radius:999px; background:var(--sun); font-weight:700; }
+.part h3{ font-size:var(--fs-h3); line-height:var(--lh-h3); font-weight:600; letter-spacing:-0.015em; padding-top:0.2rem; }
+.part > div > p{ margin-top:0.75rem; max-width:52ch; color:#4A5F53; }
+.tags{ margin-top:1.25rem; display:flex; flex-wrap:wrap; gap:0.5rem; }
+.tags li{ padding:0.5rem 1rem; border-radius:999px; background:var(--paper); font-size:var(--fs-small); font-weight:600; color:var(--leaf-deep); box-shadow:inset 0 0 0 1px rgba(11,122,66,0.25); }
+.steps{ margin-top:1.5rem; display:grid; gap:0; }
+.steps li{ display:grid; grid-template-columns:auto 1fr; column-gap:1rem; padding:1.15rem 0; border-top:1px solid rgba(18,53,36,0.14); }
+.steps .k{ font-family:var(--font-display); font-size:1.75rem; line-height:1; color:var(--leaf-deep); min-width:1.5rem; }
+.steps strong{ display:block; font-weight:600; }
+.steps span.d{ display:block; margin-top:0.25rem; color:#4A5F53; font-size:var(--fs-body); max-width:50ch; }
+@media (min-width:1024px){
+  .anat{ grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:var(--gutter); }
+  .phone{ width:17.5rem; }
+  .phone-wrap{ position:sticky; top:7rem; }
+}
+
+/* ============ MODELOS ============ */
+.ventures{ margin-top:4rem; display:grid; grid-template-columns:1fr; column-gap:var(--gutter); row-gap:4rem; }
+@media (min-width:768px){ .ventures{ grid-template-columns:1fr 1fr; } .ventures > li:nth-child(even){ margin-top:6rem; } }
+.venture .liquid{ aspect-ratio:16/11; width:100%; border-radius:0.75rem; }
+.venture__row{ margin-top:1.5rem; display:flex; align-items:flex-start; justify-content:space-between; gap:1.5rem; }
+.venture h3{ font-size:var(--fs-h3); line-height:var(--lh-h3); font-weight:600; letter-spacing:-0.015em; transition:color 340ms ease-out; }
+.venture__blurb{ margin-top:0.5rem; max-width:42ch; color:var(--muted); }
+.venture__meta{ flex:none; text-align:right; }
+.venture__tag{ display:inline-block; padding:0.3rem 0.75rem; border-radius:999px; background:var(--paper-2); font-size:var(--fs-small); font-weight:600; text-transform:uppercase; letter-spacing:0.12em; color:var(--muted); }
+.venture__out{ margin-top:0.6rem; font-size:var(--fs-small); font-weight:600; text-transform:uppercase; letter-spacing:0.12em; color:var(--leaf-deep); }
+.venture__cat{ margin-top:0.75rem; font-size:var(--fs-small); text-transform:uppercase; letter-spacing:0.2em; color:var(--muted); }
+@media (hover:hover){ .venture:hover h3{ color:var(--leaf-deep); } }
+.work-note{ margin-top:3.5rem; font-size:var(--fs-body); color:var(--muted); }
+
+/* ============ INCLUSO ============ */
+.included{ background:var(--leaf-deep); color:var(--on-dark); }
+.included .sec-intro{ color:var(--on-dark-muted); }
+.inc-list{ margin-top:4rem; display:grid; column-gap:var(--gutter); }
+.inc-list li{ display:grid; grid-template-columns:auto 1fr; column-gap:1.5rem; padding:2.25rem 0; border-top:1px solid var(--line-dark); }
+.inc-list .ico{ display:grid; place-items:center; width:3.25rem; height:3.25rem; border-radius:999px; background:var(--sun); color:var(--ink); }
+.inc-list .ico .icon{ width:1.5rem; height:1.5rem; }
+.inc-list h3{ font-size:var(--fs-h3); line-height:var(--lh-h3); font-weight:600; letter-spacing:-0.015em; padding-top:0.3rem; }
+.inc-list p{ margin-top:0.6rem; max-width:46ch; color:var(--on-dark-muted); }
+.inc-cta{ margin-top:3.5rem; display:flex; flex-wrap:wrap; align-items:center; gap:1rem 2rem; }
+.inc-cta p{ color:var(--on-dark-muted); font-size:var(--fs-small); text-transform:uppercase; letter-spacing:0.14em; font-weight:600; }
+@media (min-width:768px){ .inc-list{ grid-template-columns:1fr 1fr; } }
+
+/* ============ PERGUNTAS ============ */
+.voices{ margin-top:4rem; display:grid; gap:3rem; }
+.voice-btn{ width:100%; min-height:44px; display:flex; align-items:center; gap:1.25rem; border-top:1px solid var(--line); padding:1.75rem 0; text-align:left; }
+.voice-list li:last-child .voice-btn{ border-bottom:1px solid var(--line); }
+.voice-btn .who{ flex:1; }
+.voice-btn .name{ display:block; font-size:var(--fs-h3); line-height:var(--lh-h3); font-weight:600; letter-spacing:-0.015em; color:var(--muted); transition:color 300ms ease; }
+.voice-btn .role{ display:block; margin-top:0.35rem; font-size:var(--fs-small); text-transform:uppercase; letter-spacing:0.16em; color:var(--muted); }
+.voice-btn .rule{ height:3px; border-radius:3px; width:0; background:var(--leaf); transition:width 420ms var(--expo); }
+.voice-btn.active .name{ color:var(--ink); }
+.voice-btn.active .rule{ width:2.5rem; }
+.voice-panel{ display:grid; gap:2rem; }
+.voice-panel blockquote{ order:2; }
+.voice-panel .liquid{ order:1; aspect-ratio:4/5; width:100%; border-radius:0.75rem; opacity:0; transform:scale(1.06); transition:opacity 640ms var(--expo), transform 640ms var(--expo); }
+.voice-panel .liquid.in{ opacity:1; transform:none; }
+.quote{ max-width:30ch; font-size:var(--fs-h3); line-height:1.32; font-weight:500; letter-spacing:-0.015em; }
+.quote .w{ display:inline-block; transform:translateY(18px); opacity:0; }
+.quote.play .w{ animation:wordIn 520ms var(--quart) forwards; animation-delay:calc(var(--i) * 22ms); }
+@keyframes wordIn{ to{ transform:none; opacity:1; } }
+.voice-panel footer{ margin-top:2rem; font-size:var(--fs-small); text-transform:uppercase; letter-spacing:0.16em; color:var(--muted); }
+@media (min-width:640px){
+  .voice-panel{ grid-template-columns:1fr auto; align-items:flex-start; }
+  .voice-panel blockquote{ order:1; }
+  .voice-panel .liquid{ order:2; width:16rem; }
+}
+@media (min-width:1024px){
+  .voices{ grid-template-columns:repeat(12, 1fr); gap:var(--gutter); }
+  .voice-list{ grid-column:span 5; }
+  .voice-panel{ grid-column:span 7; }
+}
+
+/* ============ CTA FINAL + RODAPÉ ============ */
+.closing{ background:var(--sun); padding:var(--section) var(--gutter); }
+.closing h2{ max-width:17ch; font-family:var(--font-display); font-weight:400; text-transform:uppercase; letter-spacing:-0.01em; font-size:var(--fs-h1); line-height:var(--lh-h1); text-wrap:balance; }
+@media (min-width:640px){ .closing h2{ font-size:var(--fs-display); line-height:var(--lh-display); } }
+.closing__sub{ margin-top:2rem; max-width:46ch; font-size:var(--fs-lead); line-height:var(--lh-lead); color:#3D4A2C; }
+.closing .btn{ margin-top:2.75rem; min-height:max(4.25rem, 56px); padding:0 max(2.25rem, 24px); font-size:max(1.25rem, 17px); }
+.closing .btn .icon{ width:1.4em; height:1.4em; }
+.site-foot{ background:var(--forest); color:var(--on-dark); padding:3.5rem var(--gutter); display:grid; gap:2.5rem; }
+.foot__sig{ font-family:var(--font-display); font-size:var(--fs-h2); line-height:1; text-transform:uppercase; }
+.foot__tag{ margin-top:1rem; font-size:var(--fs-small); text-transform:uppercase; letter-spacing:0.2em; color:var(--on-dark-muted); }
+.foot__social a{ display:inline-flex; align-items:center; min-height:44px; gap:0; color:var(--on-dark-muted); transition:color 300ms ease, gap 340ms var(--expo); }
+.foot__social a::before{ content:""; height:2px; width:0; border-radius:2px; background:var(--sun); transition:width 340ms var(--expo); }
+@media (hover:hover){ .foot__social a:hover{ color:var(--on-dark); gap:0.75rem; } .foot__social a:hover::before{ width:1.5rem; } }
+.foot__copy{ font-size:var(--fs-small); text-transform:uppercase; letter-spacing:0.16em; color:var(--on-dark-muted); }
+@media (min-width:1024px){
+  .site-foot{ grid-template-columns:repeat(12, 1fr); }
+  .site-foot > :nth-child(1){ grid-column:span 6; }
+  .site-foot > :nth-child(2){ grid-column:span 3; }
+  .site-foot > :nth-child(3){ grid-column:span 3; text-align:right; }
+}
+
+/* ============ MOVIMENTO REDUZIDO ============ */
+@media (prefers-reduced-motion: reduce){
+  .preloader{ display:none; }
+  .marquee__track{ animation:none; }
+  .mask > .inner, .ch, .rv, .voice-panel .liquid, .quote .w, .chip{ transition:none !important; animation:none !important; opacity:1 !important; }
+  .mask > .inner, .ch, .rv, .voice-panel .liquid, .quote .w{ transform:none !important; }
+  .chaos.in .chip{ transform:rotate(var(--r)) !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ÍCONES (traço único, mesmo peso) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2.5 21.5Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></symbol>
+  <symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8 7.5 9.5 4.3-1.5 7.5-4.9 7.5-9.5V6z"/><path d="m9 12 2.2 2.2L15.5 10"/></symbol>
+  <symbol id="i-door" viewBox="0 0 24 24"><path d="M3.5 21h17"/><path d="M6 21V4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21"/><path d="M14.5 12.5h.01"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20.5 12a8.5 8.5 0 1 1-2.6-6.1L20.5 8.5"/><path d="M20.5 3.5v5h-5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.8a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.2" r="2.5"/></symbol>
+  <symbol id="i-ad" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9.5 4.5 2.5-4.5 2.5z"/></symbol>
+  <symbol id="i-page" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10 18.5h4"/></symbol>
+</svg>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <span class="pre__brand">Félix Dias</span>
+  <span class="pre__count"><span id="count">0</span><i>%</i></span>
+</div>
+
+<!-- NAV -->
+<header class="site-nav" id="site-nav">
+  <nav aria-label="Principal">
+    <a class="logo" href="#top" aria-label="Félix Dias, início">
+      <span class="logo__mono">FD</span>
+      <span class="logo__name">Félix Dias</span>
+    </a>
+    <div class="nav__right">
+      <ul class="nav__links">
+        <li><a href="#estrategia">Estratégia</a></li>
+        <li><a href="#comparativo">Comparativo</a></li>
+        <li><a href="#anatomia">Anatomia</a></li>
+        <li><a href="#incluso">Incluso</a></li>
+        <li><a href="#modelos">Modelos</a></li>
+      </ul>
+      <a class="btn btn--primary nav__cta" data-whatsapp href="https://wa.me/5532984666392" target="_blank" rel="noopener">Quero meu site</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+<div class="menu" id="menu" aria-hidden="true">
+  <ul>
+    <li><a href="#estrategia">Estratégia</a></li>
+    <li><a href="#comparativo">Comparativo</a></li>
+    <li><a href="#anatomia">Anatomia</a></li>
+    <li><a href="#incluso">Incluso</a></li>
+    <li><a href="#modelos">Modelos</a></li>
+  </ul>
+  <a class="btn btn--primary" data-whatsapp href="https://wa.me/5532984666392" target="_blank" rel="noopener"><svg class="icon"><use href="#i-chat"/></svg>Quero meu site profissional</a>
+</div>
+
+<main>
+  <!-- 1. HERO -->
+  <section class="hero" id="top">
+    <div class="hero__copy">
+      <h1 id="hero-h1">Tenha um site de alta conversão para lotar sua agenda de consultas particulares <span class="tail">— sem pagar milhares de reais à vista.</span></h1>
+      <p class="hero__sub rv hero-rv">Desenvolvimento, hospedagem e otimização para tráfego em um plano mensal acessível. Seu posicionamento profissional no ar em até 7 dias.</p>
+      <div class="hero__ctas rv hero-rv">
+        <a class="btn btn--primary" data-whatsapp href="https://wa.me/5532984666392" target="_blank" rel="noopener">Quero meu site profissional<svg class="icon icon-arrow"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--ghost" href="#modelos">Ver modelos de demonstração</a>
+      </div>
+      <ul class="proofs rv hero-rv">
+        <li><svg class="icon"><use href="#i-check"/></svg>Sem taxa de adesão</li>
+        <li><svg class="icon"><use href="#i-check"/></svg>Cancelamento flexível</li>
+        <li><svg class="icon"><use href="#i-check"/></svg>Suporte contínuo</li>
+      </ul>
+    </div>
+
+    <div class="hero__stage">
+      <p class="hero__tag rv hero-rv"><strong>Sites por assinatura</strong><span>Web designer especializado em sites para nutricionistas</span></p>
+      <p class="hero__name" id="hero-name" aria-hidden="true">
+        <span class="line" data-letters>Félix</span>
+        <span class="line" data-letters>Dias</span>
+      </p>
+      <div class="hero__portrait">
+        <figure class="liquid bare" data-liquid data-scale="30" role="img" aria-label="Félix Dias, de blazer azul-marinho e braços cruzados, sorrindo.">
+          <img src="assets/felix-recorte-v4.webp" alt="" fetchpriority="high">
+        </figure>
+      </div>
+      <div class="hero__base" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <section class="marquee" aria-label="Vantagens do plano">
+    <div class="marquee__track">
+      <span class="marquee__item">Sem taxa de adesão</span><span class="marquee__item">No ar em até 7 dias</span><span class="marquee__item">Feito para o celular</span><span class="marquee__item">Um toque até o WhatsApp</span><span class="marquee__item">Suporte contínuo</span>
+      <span class="marquee__item" aria-hidden="true">Sem taxa de adesão</span><span class="marquee__item" aria-hidden="true">No ar em até 7 dias</span><span class="marquee__item" aria-hidden="true">Feito para o celular</span><span class="marquee__item" aria-hidden="true">Um toque até o WhatsApp</span><span class="marquee__item" aria-hidden="true">Suporte contínuo</span>
+    </div>
+  </section>
+
+  <!-- 2. TRÁFEGO FRIO x QUENTE -->
+  <section class="section" id="estrategia">
+    <h2 class="h-sec big" data-lines style="max-width:17ch">O Instagram atrai. Quem fecha a consulta é o site.</h2>
+    <p class="sec-intro rv">O Instagram sozinho não vende consulta de alto valor. Quando você anuncia, quem chega ainda não te conhece. É aí que a página faz a conversão.</p>
+    <div class="traffic__grid">
+      <div class="lane rv" style="--rv-y:40px; --rv-d:620ms">
+        <h3>Tráfego frio, solto no Instagram</h3>
+        <p>Quem chega pelo Meta Ads (Instagram e Facebook) ou pelo Google Ads não conhece você. No Instagram, essa pessoa se perde em feeds, stories de terceiros e notificações antes de pensar em marcar.</p>
+        <div class="chaos" aria-hidden="true">
+          <span class="chip" style="--x:6%;  --y:10%; --r:-6deg; --dx:-6px; --dy:4px">Stories de terceiros</span>
+          <span class="chip" style="--x:52%; --y:6%;  --r:5deg;  --dx:8px;  --dy:-4px">3 notificações novas</span>
+          <span class="chip" style="--x:30%; --y:30%; --r:-3deg; --dx:-4px; --dy:6px">Reels de receita</span>
+          <span class="chip chip--you" style="--x:40%; --y:50%; --r:2deg; --dx:3px; --dy:3px">Seu perfil</span>
+          <span class="chip" style="--x:4%;  --y:56%; --r:4deg;  --dx:-8px; --dy:2px">Feed infinito</span>
+          <span class="chip" style="--x:44%; --y:66%; --r:-5deg; --dx:6px;  --dy:6px">Mensagem do grupo</span>
+          <span class="chip" style="--x:12%; --y:80%; --r:-2deg; --dx:-3px; --dy:5px">Anúncio de outra nutri</span>
+        </div>
+      </div>
+      <div class="lane lane--hot rv" style="--rv-y:40px; --rv-d:620ms; --rv-delay:120ms">
+        <h3>Na sua página, um funil fechado</h3>
+        <p>O tráfego frio vai para um ambiente controlado, sem distrações, desenhado para gerar confiança imediata. Só existe você e um próximo passo.</p>
+        <div class="funnel">
+          <ol>
+            <li><span class="dot"><svg class="icon"><use href="#i-ad"/></svg></span><div><strong>Anúncio no Instagram ou no Google</strong><span class="cap">A pessoa clica porque o assunto é o problema dela.</span></div></li>
+            <li><span class="dot"><svg class="icon"><use href="#i-page"/></svg></span><div><strong>Sua página, sem distrações</strong><span class="cap">Quem você é, como atende e por que confiar, sem feed concorrendo.</span></div></li>
+            <li><span class="dot"><svg class="icon"><use href="#i-chat"/></svg></span><div><strong>Conversa no seu WhatsApp</strong><span class="cap">Um toque, mensagem já escrita, pronta para agendar.</span></div></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. COMPARATIVO -->
+  <section class="section compare on-dark" id="comparativo">
+    <h2 class="h-sec big" data-lines style="max-width:15ch">Profissional, sem o preço de agência.</h2>
+    <p class="sec-intro rv">No modelo de site por assinatura, você não paga milhares de reais para começar. A mensalidade já cobre o que normalmente vem cobrado à parte.</p>
+    <table class="ctable rv" style="--rv-y:30px">
+      <thead>
+        <tr><th scope="col">Recurso</th><th scope="col" class="us">Seu site por assinatura</th><th scope="col" class="them-h">Agência ou freelancer tradicional</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Investimento inicial</th>
+          <td class="us" data-label="Seu site por assinatura"><span class="zero">R$ 0</span><span class="zero-cap">de entrada. Você paga <em>apenas a mensalidade.</em></span></td>
+          <td class="them" data-label="Agência ou freelancer tradicional">R$ 2.500 a R$ 5.000 à vista, antes do site ficar pronto</td>
+        </tr>
+        <tr>
+          <th scope="row">Hospedagem e domínio</th>
+          <td class="us" data-label="Seu site por assinatura"><em>100%</em> incluso e configurado</td>
+          <td class="them" data-label="Agência ou freelancer tradicional">Custo e configuração à parte</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="compare__cta rv">
+      <a class="btn btn--sun" data-whatsapp href="https://wa.me/5532984666392" target="_blank" rel="noopener">Quero meu site profissional<svg class="icon icon-arrow"><use href="#i-arrow"/></svg></a>
+      <p>R$ 0 de entrada, sem taxa de adesão e com cancelamento flexível.</p>
+    </div>
+  </section>
+
+  <!-- MÉTODO -->
+  <section class="section" id="metodo">
+    <div class="story">
+      <div class="story__left">
+        <h2 class="h-sec big" data-lines style="max-width:16ch">Site bonito não basta. Precisa converter.</h2>
+        <p class="sec-intro rv">Sou Félix Dias, estudante de psicologia e web designer especializado em sites para nutricionistas. Antes de escolher cor ou fonte, eu estudo como a sua paciente pensa: o que ela precisa ver para confiar, o que a faz desistir e qual é o caminho mais curto até o agendamento.</p>
+      </div>
+      <ul class="story__right principles">
+        <li class="rv" style="--rv-d:560ms"><h3>Clareza antes de beleza</h3><p>A paciente decide em poucos segundos se fica. A primeira tela diz para quem é, o que muda e qual é o próximo passo.</p></li>
+        <li class="rv" style="--rv-d:560ms; --rv-delay:90ms"><h3>Confiança à primeira vista</h3><p>Rosto, formação, CRN e o jeito como você atende aparecem antes de qualquer pedido. Ninguém marca consulta com uma desconhecida.</p></li>
+        <li class="rv" style="--rv-d:560ms; --rv-delay:180ms"><h3>Um caminho até o agendamento</h3><p>Um botão, sempre à vista, abre o seu WhatsApp com a mensagem pronta. Menos passos, menos desistência.</p></li>
+        <li class="rv" style="--rv-d:560ms; --rv-delay:270ms"><h3>Feito primeiro para o celular</h3><p>Quem chega pelo Instagram está no celular. Cada site é desenhado primeiro para a tela do bolso, depois para o computador.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4. ANATOMIA -->
+  <section class="section anatomy" id="anatomia">
+    <h2 class="h-sec big" data-lines style="max-width:16ch">A anatomia de um site que agenda consultas.</h2>
+    <p class="sec-intro rv">Cada bloco existe para passar autoridade técnica, sempre alinhado ao código de ética do CRN: informação clara, sem promessa de resultado.</p>
+    <div class="anat">
+      <div class="phone-wrap rv" style="--rv-y:40px; --rv-d:700ms">
+        <div class="phone" role="img" aria-label="Exemplo de site de nutricionista no celular, com apresentação, especializações, etapas da consulta e botão de WhatsApp.">
+          <div class="screen">
+            <div class="screen__notch"></div>
+            <div class="scr-block">
+              <span class="pin pin--l" aria-hidden="true">1</span>
+              <div class="scr-who"><span class="scr-avatar">CR</span><div><div class="scr-name">Camila Rezende</div><div class="scr-crn">Nutricionista · CRN 0/00000</div></div></div>
+              <p class="scr-bio">Ajudo mulheres a comer bem sem dieta restritiva, com um plano que cabe na rotina.</p>
+              <div class="scr-tags"><span>Esportiva</span><span>Emagrecimento</span><span>Materno-infantil</span><span>Funcional</span></div>
+            </div>
+            <div class="scr-block">
+              <span class="pin pin--r" aria-hidden="true">2</span>
+              <div class="scr-title">Como funciona a consulta</div>
+              <ol class="scr-steps"><li>Anamnese</li><li>Bioimpedância</li><li>Plano alimentar individualizado</li><li>Acompanhamento por aplicativo</li></ol>
+            </div>
+            <div class="scr-btn"><svg class="icon"><use href="#i-chat"/></svg>Agendar pelo WhatsApp</div>
+            <p class="scr-note">Exemplo fictício</p>
+          </div>
+        </div>
+      </div>
+      <div class="anat__parts">
+        <div class="part rv" style="--rv-d:600ms">
+          <span class="num" aria-hidden="true">1</span>
+          <div>
+            <h3>Apresentação e autoridade</h3>
+            <p>Biografia enxuta, registro profissional (CRN) em destaque e as especializações que você atende, para a paciente reconhecer o próprio caso em segundos.</p>
+            <ul class="tags"><li>Nutrição Esportiva</li><li>Emagrecimento</li><li>Materno-Infantil</li><li>Funcional</li></ul>
+          </div>
+        </div>
+        <div class="part rv" style="--rv-d:600ms; --rv-delay:100ms">
+          <span class="num" aria-hidden="true">2</span>
+          <div>
+            <h3>Metodologia de atendimento</h3>
+            <p>Uma explicação passo a passo de como funciona a consulta. Saber o que vai acontecer tira o medo do desconhecido, e isso pesa na hora de marcar.</p>
+            <ol class="steps">
+              <li><span class="k">1</span><div><strong>Anamnese</strong><span class="d">A conversa inicial sobre histórico de saúde, rotina, preferências e objetivos.</span></div></li>
+              <li><span class="k">2</span><div><strong>Bioimpedância</strong><span class="d">A avaliação da composição corporal, que serve de ponto de partida para o acompanhamento.</span></div></li>
+              <li><span class="k">3</span><div><strong>Plano alimentar individualizado</strong><span class="d">Um plano montado para a rotina e o objetivo de cada paciente, nunca um cardápio pronto.</span></div></li>
+              <li><span class="k">4</span><div><strong>Acompanhamento por aplicativo</strong><span class="d">Ajustes e dúvidas resolvidos entre uma consulta e outra, sem depender só do retorno.</span></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODELOS -->
+  <section class="section" id="modelos">
+    <div class="sec-head">
+      <h2 class="h-sec big" data-lines style="max-width:14ch">Modelos de demonstração.</h2>
+      <p class="sec-label">Escolha o ponto de partida do seu nicho</p>
+    </div>
+    <ul class="ventures">
+      <li class="rv" style="--rv-y:60px; --rv-d:620ms">
+        <article class="venture">
+          <figure class="liquid" data-liquid data-scale="28" role="img" aria-label="Kiwi e abacate cortados ao meio sobre fundo verde.">
+            <img src="assets/caso-verde.jpg" alt="" loading="lazy">
+          </figure>
+          <div class="venture__row">
+            <div><h3>Camila Rezende</h3><p class="venture__blurb">Primeira tela que fala com corredores e um botão direto para agendar a avaliação.</p></div>
+            <div class="venture__meta"><p class="venture__tag">Exemplo</p><p class="venture__out">Agendar avaliação</p></div>
+          </div>
+          <p class="venture__cat">Nutrição esportiva</p>
+        </article>
+      </li>
+      <li class="rv" style="--rv-y:60px; --rv-d:620ms; --rv-delay:120ms">
+        <article class="venture">
+          <figure class="liquid" data-liquid data-scale="28" role="img" aria-label="Beterraba cortada ao meio sobre fundo magenta.">
+            <img src="assets/caso-beterraba.jpg" alt="" loading="lazy">
+          </figure>
+          <div class="venture__row">
+            <div><h3>Beatriz Monteiro</h3><p class="venture__blurb">Respostas para mães com pouco tempo antes da consulta, e agendamento em um toque.</p></div>
+            <div class="venture__meta"><p class="venture__tag">Exemplo</p><p class="venture__out">Agendar consulta</p></div>
+          </div>
+          <p class="venture__cat">Nutrição materno-infantil</p>
+        </article>
+      </li>
+      <li class="rv" style="--rv-y:60px; --rv-d:620ms">
+        <article class="venture">
+          <figure class="liquid" data-liquid data-scale="28" role="img" aria-label="Limão e toranja cortados ao meio sobre fundo amarelo.">
+            <img src="assets/caso-citrico.jpg" alt="" loading="lazy">
+          </figure>
+          <div class="venture__row">
+            <div><h3>Renata Couto</h3><p class="venture__blurb">Linguagem acolhedora para quem cansou de dieta restritiva, sem promessa de resultado rápido.</p></div>
+            <div class="venture__meta"><p class="venture__tag">Exemplo</p><p class="venture__out">Agendar conversa</p></div>
+          </div>
+          <p class="venture__cat">Comportamento alimentar</p>
+        </article>
+      </li>
+      <li class="rv" style="--rv-y:60px; --rv-d:620ms; --rv-delay:120ms">
+        <article class="venture">
+          <figure class="liquid" data-liquid data-scale="28" role="img" aria-label="Mamão cortado ao meio sobre fundo laranja.">
+            <img src="assets/mamao.jpg" alt="" loading="lazy" style="object-position:50% 62%">
+          </figure>
+          <div class="venture__row">
+            <div><h3>Seu consultório</h3><p class="venture__blurb">O próximo site desta lista pode ser o seu. A primeira conversa é sem compromisso.</p></div>
+            <div class="venture__meta"><p class="venture__tag">Próximo</p><p class="venture__out">Vamos conversar</p></div>
+          </div>
+          <p class="venture__cat">Seu nicho</p>
+        </article>
+      </li>
+    </ul>
+    <p class="work-note">Os três primeiros são exemplos fictícios, criados para mostrar o processo.</p>
+  </section>
+
+  <!-- 5. INCLUSO NO PLANO -->
+  <section class="section included on-dark" id="incluso">
+    <h2 class="h-sec big" data-lines style="max-width:15ch">O que está incluso no plano mensal.</h2>
+    <p class="sec-intro rv">Você paga uma mensalidade e para de se preocupar com o site. Tudo isto já vem dentro dela:</p>
+    <ul class="inc-list">
+      <li class="rv" style="--rv-d:560ms"><span class="ico"><svg class="icon"><use href="#i-layout"/></svg></span><div><h3>Design exclusivo</h3><p>Layout moderno, responsivo e adaptado à sua identidade visual. Nada de modelo genérico com o seu nome trocado.</p></div></li>
+      <li class="rv" style="--rv-d:560ms; --rv-delay:110ms"><span class="ico"><svg class="icon"><use href="#i-shield"/></svg></span><div><h3>Infraestrutura completa</h3><p>Hospedagem em servidor de alta velocidade (CDN) e certificado de segurança SSL, o cadeado ao lado do endereço.</p></div></li>
+      <li class="rv" style="--rv-d:560ms; --rv-delay:220ms"><span class="ico"><svg class="icon"><use href="#i-door"/></svg></span><div><h3>Porta de entrada direta para pacientes</h3><p>Seu site é pensado para converter visitantes em pacientes: quem chega encontra um caminho direto, sem distrações, até a conversa no seu WhatsApp.</p></div></li>
+      <li class="rv" style="--rv-d:560ms; --rv-delay:330ms"><span class="ico"><svg class="icon"><use href="#i-pin"/></svg></span><div><h3>SEO básico local</h3><p>Otimização para você ser encontrada no Google quando buscarem por “Nutricionista em [sua cidade]”.</p></div></li>
+    </ul>
+    <div class="inc-cta rv">
+      <a class="btn btn--sun" data-whatsapp href="https://wa.me/5532984666392" target="_blank" rel="noopener">Quero meu site profissional<svg class="icon icon-arrow"><use href="#i-arrow"/></svg></a>
+      <p>Sem taxa de adesão · Cancelamento flexível · Suporte contínuo</p>
+    </div>
+  </section>
+
+  <!-- PERGUNTAS DA PACIENTE -->
+  <section class="section" id="perguntas">
+    <h2 class="h-sec" data-lines style="max-width:18ch">O que a paciente pergunta em silêncio.</h2>
+    <div class="voices">
+      <ul class="voice-list">
+        <li><button class="voice-btn active" data-voice="0" aria-pressed="true"><span class="who"><span class="name">“Ela entende o meu caso?”</span><span class="role">O site responde com clareza</span></span><span class="rule"></span></button></li>
+        <li><button class="voice-btn" data-voice="1" aria-pressed="false"><span class="who"><span class="name">“Posso confiar nela?”</span><span class="role">O site responde com confiança</span></span><span class="rule"></span></button></li>
+        <li><button class="voice-btn" data-voice="2" aria-pressed="false"><span class="who"><span class="name">“Quanto esforço vai dar marcar?”</span><span class="role">O site responde com um caminho só</span></span><span class="rule"></span></button></li>
+      </ul>
+      <div class="voice-panel">
+        <blockquote aria-live="polite">
+          <p class="quote" id="quote"></p>
+          <footer id="quote-foot"></footer>
+        </blockquote>
+        <figure class="liquid" id="voice-img" data-liquid data-scale="22" role="img" aria-label="Fruta cortada ao meio sobre fundo da mesma cor.">
+          <img src="assets/caso-verde.jpg" alt="" loading="lazy">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. CTA FINAL -->
+  <section class="closing" id="contato">
+    <h2 data-lines>Pronta para transformar visitantes do seu perfil em pacientes pagantes?</h2>
+    <p class="closing__sub rv">Fale comigo pelo WhatsApp, escolha o modelo ideal para o seu nicho e tenha seu site profissional no ar esta semana.</p>
+    <a class="btn btn--primary rv" data-whatsapp href="https://wa.me/5532984666392" target="_blank" rel="noopener"><svg class="icon"><use href="#i-chat"/></svg>Conversar no WhatsApp</a>
+  </section>
+
+  <footer class="site-foot on-dark">
+    <div>
+      <p class="foot__sig">Félix Dias</p>
+      <p class="foot__tag">Sites de alta conversão para nutricionistas.</p>
+    </div>
+    <nav aria-label="Redes">
+      <ul class="foot__social">
+        <li><a data-whatsapp href="https://wa.me/5532984666392" target="_blank" rel="noreferrer noopener">WhatsApp</a></li>
+        <li><a href="https://instagram.com/" target="_blank" rel="noreferrer noopener">Instagram</a></li>
+        <li><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer noopener">LinkedIn</a></li>
+      </ul>
+    </nav>
+    <p class="foot__copy">© <span id="year">2026</span> Félix Dias. Todos os direitos reservados.</p>
+  </footer>
+</main>
+
+<script type="importmap">
+{ "imports": { "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.19/dist/lenis.mjs" } }
+</script>
+<script type="module">
+/* ==========================================================
+   TROQUE AQUI: seu WhatsApp (só dígitos, com 55 + DDD)
+   ========================================================== */
+const WHATSAPP_NUMERO = "5532984666392";
+const WHATSAPP_MENSAGEM = "Oi, Félix! Vi seu site e quero um site profissional para o meu consultório.";
+
+import Lenis from "lenis";
+
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const finePointer = matchMedia("(hover: hover) and (min-width: 769px)");
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+/* ---------- WhatsApp e ano ---------- */
+const wa = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(WHATSAPP_MENSAGEM)}`;
+$$("[data-whatsapp]").forEach(a => a.href = wa);
+$("#year").textContent = new Date().getFullYear();
+
+/* ---------- Adaptive grid acima de 1920px ---------- */
+const FONT_BASE = 16, BASE_W = 1920, COEF = 0.6666;
+function applyAdaptiveGrid(){
+  const w = innerWidth;
+  const reduction = ((BASE_W - w) / BASE_W) * 100 * COEF;
+  const size = FONT_BASE - (FONT_BASE * reduction) / 100;
+  if (size > FONT_BASE) document.documentElement.style.fontSize = size + "px";
+  else document.documentElement.style.removeProperty("font-size");
+}
+applyAdaptiveGrid();
+addEventListener("resize", applyAdaptiveGrid);
+
+/* ---------- Lenis ---------- */
+const lenis = new Lenis({ smoothWheel: true });
+window.lenis = lenis;
+function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+requestAnimationFrame(raf);
+const nav = $("#site-nav");
+const onScroll = () => nav.classList.toggle("scrolled", scrollY > 40);
+lenis.on("scroll", onScroll); addEventListener("scroll", onScroll, { passive: true });
+
+/* ---------- Mola (spring) genérica ---------- */
+function spring({ from, to, tension, friction, onUpdate, onRest }){
+  let x = from, v = 0, last = performance.now(), id;
+  const step = (now) => {
+    const dt = Math.min(0.032, (now - last) / 1000); last = now;
+    const a = -tension * (x - to) - friction * v;
+    v += a * dt; x += v * dt;
+    onUpdate(x);
+    if (Math.abs(v) < 0.001 && Math.abs(x - to) < 0.001){ onUpdate(to); onRest && onRest(); return; }
+    id = requestAnimationFrame(step);
+  };
+  id = requestAnimationFrame(step);
+  return () => cancelAnimationFrame(id);
+}
+
+/* ---------- Divisão de texto ---------- */
+$$("[data-letters]").forEach(line => {
+  const txt = line.textContent;
+  line.textContent = "";
+  [...txt].forEach(c => { const s = document.createElement("span"); s.className = "ch"; s.textContent = c; line.appendChild(s); });
+});
+// linhas: agrupa as palavras pela posição vertical; preserva trechos destacados (.tail)
+function splitLines(el){
+  el.setAttribute("aria-label", el.textContent.replace(/\s+/g, " ").trim());
+  const words = [];
+  el.childNodes.forEach(n => {
+    const cls = n.nodeType === 1 ? n.className : "";
+    n.textContent.trim().split(/\s+/).filter(Boolean).forEach(w => words.push({ w, cls }));
+  });
+  el.innerHTML = words.map(o => `<span class="wtmp" style="display:inline-block">${o.w}</span>`).join(" ");
+  const spans = $$(".wtmp", el), lines = [];
+  spans.forEach((s, i) => { const top = s.offsetTop; let l = lines.find(l => Math.abs(l.top - top) < 4); if (!l){ l = { top, words: [] }; lines.push(l); } l.words.push(words[i]); });
+  el.innerHTML = lines.map((l, i) => `<span class="mask" aria-hidden="true"><span class="inner" style="transition-delay:${i * 90}ms">${l.words.map(o => o.cls ? `<span class="${o.cls}">${o.w}</span>` : o.w).join(" ")}</span></span>`).join("");
+}
+
+/* ---------- Revelações ao entrar na tela (uma vez) ---------- */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const t = e.target;
+    t.classList.add(t.matches("[data-lines]") ? "revealed" : "in");
+    io.unobserve(t);
+  });
+}, { threshold: 0 });
+
+/* ---------- Hero: sequência após o preloader ---------- */
+const REVEAL_DELAY = reduce ? 0 : 2500;
+function heroSequence(){
+  const name = $("#hero-name");
+  $$(".line", name).forEach((line, li) => $$(".ch", line).forEach((ch, i) => ch.style.transitionDelay = `${li * 240 + i * 52}ms`));
+  setTimeout(() => name.classList.add("go"), REVEAL_DELAY);
+  setTimeout(() => $("#hero-h1").classList.add("revealed"), REVEAL_DELAY ? REVEAL_DELAY + 150 : 0);
+  $$(".hero-rv").forEach((el, i) => setTimeout(() => el.classList.add("in"), REVEAL_DELAY ? 2950 + i * 120 : 0));
+}
+
+/* ---------- Preloader ---------- */
+function preloader(){
+  const pre = $("#preloader"), count = $("#count");
+  if (reduce){ pre.remove(); return; }
+  lenis.stop(); scrollTo(0, 0);
+  const start = performance.now();
+  const tick = (now) => {
+    const p = Math.min(1, (now - start) / 2000);
+    count.textContent = Math.round(p * 100);
+    if (p < 1) return requestAnimationFrame(tick);
+    pre.classList.add("fade");
+    setTimeout(() => {
+      pre.classList.add("wipe");
+      pre.addEventListener("transitionend", function done(ev){
+        if (ev.propertyName !== "transform") return;
+        pre.removeEventListener("transitionend", done);
+        pre.classList.add("done");
+        lenis.start();
+      });
+    }, 300 + 200);
+  };
+  requestAnimationFrame(tick);
+}
+
+/* ---------- Liquid image ---------- */
+let fxId = 0;
+function liquid(fig){
+  const id = `liq-${fxId++}`;
+  const bare = fig.classList.contains("bare");
+  const maxScale = Number(fig.dataset.scale || 28);
+  fig.insertAdjacentHTML("afterbegin", `<svg class="fx" aria-hidden="true"><filter id="${id}" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.009" numOctaves="2" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="1" xChannelSelector="R" yChannelSelector="G"/></filter></svg>`);
+  const turb = $("feTurbulence", fig), disp = $("feDisplacementMap", fig);
+  const media = $("img, video", fig);
+  media.style.filter = `url(#${id})`;
+  let glow;
+  if (!bare){
+    fig.insertAdjacentHTML("beforeend", `<span class="glow"></span><span class="vignette"></span>`);
+    glow = $(".glow", fig);
+  }
+  let k = 0, stopA, stopB;
+  const go = (target) => {
+    stopA && stopA(); stopB && stopB();
+    stopA = spring({ from: k, to: target, tension: 140, friction: 13, onUpdate: (x) => {
+      k = x; const s = 1 + (maxScale - 1) * Math.max(0, x);
+      disp.setAttribute("scale", s.toFixed(2));
+      turb.setAttribute("baseFrequency", (0.009 + 0.013 * Math.max(0, x)).toFixed(4));
+    }});
+    if (!bare){
+      const from = Number(glow.style.opacity || 0);
+      stopB = spring({ from, to: target, tension: 220, friction: 26, onUpdate: (x) => { glow.style.opacity = Math.min(1, Math.max(0, x)).toFixed(3); } });
+    }
+  };
+  const host = fig.closest("article") || fig;
+  host.addEventListener("pointerenter", () => { if (finePointer.matches && !reduce) go(1); });
+  host.addEventListener("pointerleave", () => { if (finePointer.matches && !reduce) go(0); });
+}
+
+/* ---------- Perguntas da paciente ---------- */
+const VOICES = [
+  { q: "Ela entende o meu caso?", tag: "Clareza", a: "A primeira tela fala da dor real da sua paciente, com as palavras dela. Termo técnico fica para a consulta.", img: "assets/caso-verde.jpg" },
+  { q: "Posso confiar nela?", tag: "Confiança", a: "Seu rosto, seu CRN, sua formação e o jeito como você atende aparecem antes de qualquer pedido.", img: "assets/caso-beterraba.jpg" },
+  { q: "Quanto esforço vai dar marcar?", tag: "Um caminho só", a: "Um botão, sempre à vista: um toque e a conversa abre no seu WhatsApp, com a mensagem já escrita.", img: "assets/caso-citrico.jpg" },
+];
+function setVoice(i){
+  const v = VOICES[i];
+  $$(".voice-btn").forEach((b, j) => { b.classList.toggle("active", i === j); b.setAttribute("aria-pressed", String(i === j)); });
+  const quote = $("#quote");
+  quote.classList.remove("play");
+  quote.innerHTML = `“${v.a}”`.split(" ").map((w, k) => `<span class="w" style="--i:${k}">${w}</span>`).join(" ");
+  void quote.offsetWidth;
+  quote.classList.add("play");
+  $("#quote-foot").textContent = `${v.q} — ${v.tag}`;
+  $("#voice-img img").src = v.img;
+}
+
+/* ---------- Navegação: âncoras e menu ---------- */
+const burger = $("#burger"), menu = $("#menu");
+function toggleMenu(open){
+  burger.setAttribute("aria-expanded", String(open));
+  burger.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+  menu.classList.toggle("open", open);
+  menu.setAttribute("aria-hidden", String(!open));
+  $$("li, .btn", menu).forEach((el, i) => el.style.transitionDelay = open ? `${120 + i * 60}ms` : "0ms");
+  open ? lenis.stop() : lenis.start();
+}
+burger.addEventListener("click", () => toggleMenu(burger.getAttribute("aria-expanded") !== "true"));
+addEventListener("keydown", (e) => { if (e.key === "Escape" && menu.classList.contains("open")) toggleMenu(false); });
+$$('a[href^="#"]').forEach(a => a.addEventListener("click", (e) => {
+  const target = $(a.getAttribute("href"));
+  if (!target) return;
+  e.preventDefault();
+  if (menu.classList.contains("open")) toggleMenu(false);
+  lenis.scrollTo(target, { offset: 0, immediate: reduce });
+}));
+$$('#menu a[data-whatsapp]').forEach(a => a.addEventListener("click", () => toggleMenu(false)));
+
+/* ---------- Início ---------- */
+async function init(){
+  await document.fonts.ready;
+  $$("[data-lines], #hero-h1").forEach(splitLines);
+  $$("[data-lines], .rv:not(.hero-rv), #voice-img, .chaos").forEach(el => io.observe(el));
+  $$("[data-liquid]").forEach(liquid);
+  $$(".voice-btn").forEach(b => {
+    const i = Number(b.dataset.voice);
+    b.addEventListener("click", () => setVoice(i));
+    b.addEventListener("focus", () => setVoice(i));
+    b.addEventListener("pointerenter", () => { if (finePointer.matches) setVoice(i); });
+  });
+  setVoice(0);
+  preloader();
+  heroSequence();
+}
+init();
+</script>
+</body>
+</html>
