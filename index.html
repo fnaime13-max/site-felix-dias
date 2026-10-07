@@ -354,9 +354,12 @@ main{ position:relative; width:100%; overflow-x:hidden; }
 .venture__link{ display:block; color:inherit; text-decoration:none; border-radius:0.75rem; }
 .venture__link:focus-visible{ outline:3px solid var(--leaf-deep); outline-offset:6px; }
 .venture__link:focus-visible h3{ color:var(--leaf-deep); }
-.venture__cta{ margin-top:1.75rem; display:grid; justify-items:start; gap:0.875rem; }
-.venture__cta .btn{ white-space:normal; text-align:left; line-height:1.25; padding-block:0.75rem; }
-.venture__hint{ max-width:40ch; font-size:var(--fs-small); color:var(--muted); }
+.venture__hint{ margin-top:0.75rem; max-width:40ch; font-size:var(--fs-small); color:var(--muted); }
+.next-panel{ display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:1rem; width:100%; padding:clamp(1.5rem, 4vw, 2.75rem); border-radius:0.75rem; background:var(--sun); }
+@media (min-width:768px){ .next-panel{ aspect-ratio:16/11; } }
+.next-panel__title{ max-width:16ch; font-family:var(--font-display); font-weight:400; text-transform:uppercase; letter-spacing:-0.01em; font-size:clamp(2rem, 1.2rem + 2.6vw, 3.25rem); line-height:0.95; color:var(--ink); text-wrap:balance; }
+.next-panel__sub{ max-width:40ch; font-size:var(--fs-body); color:#3D4A2C; }
+.next-panel .btn{ margin-top:0.5rem; white-space:normal; text-align:left; line-height:1.25; padding-block:0.75rem; }
 .work-note{ margin-top:3.5rem; font-size:var(--fs-body); color:var(--muted); }
 
 /* ============ INCLUSO ============ */
@@ -690,7 +693,7 @@ main{ position:relative; width:100%; overflow-x:hidden; }
       <li class="rv" style="--rv-y:60px; --rv-d:620ms">
         <a class="venture__link" href="camila-medeiros/">
         <article class="venture">
-          <figure class="liquid" data-liquid data-scale="28" role="img" aria-label="Laranja cortada ao meio sobre fundo pêssego.">
+          <figure class="liquid" data-liquid data-scale="28" role="img" aria-label="Topo do site da Dra. Camila Medeiros: fundo creme, título em serifa com destaque terracota, anéis ao redor da foto da nutricionista.">
             <img src="assets/caso-camila-medeiros.jpg" alt="" loading="lazy">
           </figure>
           <div class="venture__row">
@@ -703,18 +706,17 @@ main{ position:relative; width:100%; overflow-x:hidden; }
       </li>
       <li class="rv" style="--rv-y:60px; --rv-d:620ms; --rv-delay:120ms">
         <article class="venture">
-          <figure class="liquid" data-liquid data-scale="28" role="img" aria-label="Mamão cortado ao meio sobre fundo laranja.">
-            <img src="assets/mamao.jpg" alt="" loading="lazy" style="object-position:50% 62%">
-          </figure>
+          <div class="next-panel">
+            <p class="next-panel__title">Pronta para transformar visitantes do seu perfil em pacientes pagantes?</p>
+            <p class="next-panel__sub">Fale comigo pelo WhatsApp, escolha o modelo ideal para o seu nicho e tenha seu site profissional no ar esta semana.</p>
+            <a class="btn btn--primary" data-whatsapp-msg="Olá, Félix! Quero ver um protótipo de como ficaria o meu site." href="https://wa.me/5532984666392?text=Ol%C3%A1%2C%20F%C3%A9lix%21%20Quero%20ver%20um%20prot%C3%B3tipo%20de%20como%20ficaria%20o%20meu%20site." target="_blank" rel="noopener"><svg class="icon"><use href="#i-chat"/></svg>Quero ver o protótipo do meu site</a>
+          </div>
           <div class="venture__row">
             <div><h3>Seu consultório</h3><p class="venture__blurb">O próximo site desta lista pode ser o seu. A primeira conversa é sem compromisso.</p></div>
             <div class="venture__meta"><p class="venture__tag">Próximo</p><p class="venture__out">Vamos conversar</p></div>
           </div>
           <p class="venture__cat">Seu nicho</p>
-          <div class="venture__cta">
-            <a class="btn btn--primary" data-whatsapp-msg="Olá, Félix! Quero ver um protótipo de como ficaria o meu site." href="https://wa.me/5532984666392?text=Ol%C3%A1%2C%20F%C3%A9lix%21%20Quero%20ver%20um%20prot%C3%B3tipo%20de%20como%20ficaria%20o%20meu%20site." target="_blank" rel="noopener"><svg class="icon"><use href="#i-chat"/></svg>Quero ver o protótipo do meu site</a>
-            <p class="venture__hint">Ideal para o link da bio do Instagram: transforma seguidores interessados em pacientes.</p>
-          </div>
+          <p class="venture__hint">Ideal para o link da bio do Instagram: transforma seguidores interessados em pacientes.</p>
         </article>
       </li>
     </ul>
