@@ -9,7 +9,8 @@
    Enquanto a lista estiver vazia, aparece um aviso de pendência no lugar. */
 const CONFIG = {
   whatsapp: '5531999909358',
-  whatsappMessage: 'Olá, Luanna! Vim pelo site e gostaria de agendar uma consulta.',
+  whatsappMessage: 'Olá, Luanna! Vi o site e quero conhecer o Método Kayris Magras, como funciona e o investimento.',
+  whatsappSingleMessage: 'Olá, Luanna! Vi o site e gostaria de saber sobre a consulta avulsa.', // link secundário
   instagram: 'nutriluannakayris',
   googleReviewsUrl: '', // link "Ver todas no Google" (perfil da empresa no Google)
   reviews: [
@@ -36,8 +37,10 @@ const CONFIG = {
   if (CONFIG.whatsapp) {
     const wa = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(CONFIG.whatsappMessage)}`;
     document.querySelectorAll('[data-cta]').forEach((a) => { a.href = wa; });
+    const waSingle = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(CONFIG.whatsappSingleMessage)}`;
+    document.querySelectorAll('[data-cta-single]').forEach((a) => { a.href = waSingle; });
   } else {
-    document.querySelectorAll('[data-cta]').forEach((a) => { a.href = `https://ig.me/m/${CONFIG.instagram}`; });
+    document.querySelectorAll('[data-cta], [data-cta-single]').forEach((a) => { a.href = `https://ig.me/m/${CONFIG.instagram}`; });
   }
   document.querySelectorAll('[data-instagram]').forEach((a) => { a.href = `https://www.instagram.com/${CONFIG.instagram}/`; });
   document.getElementById('year').textContent = new Date().getFullYear();
@@ -45,33 +48,29 @@ const CONFIG = {
   /* ---------- Avaliações do Google ---------- */
   const reviewsList = document.getElementById('reviewsList');
   if (CONFIG.googleReviewsUrl) document.getElementById('reviewsLink').href = CONFIG.googleReviewsUrl;
-  if (CONFIG.reviews.length) {
-    CONFIG.reviews.forEach(({ name, text, rating = 5 }) => {
-      const li = document.createElement('li');
-      li.className = 'review';
-      const stars = document.createElement('p');
-      stars.className = 'review__stars';
-      stars.setAttribute('aria-label', `${rating} de 5 estrelas`);
-      stars.textContent = '★'.repeat(rating) + '☆'.repeat(5 - rating);
-      const quote = document.createElement('blockquote');
-      quote.className = 'review__text';
-      quote.style.margin = '0';
-      quote.textContent = `“${text}”`;
-      const author = document.createElement('p');
-      author.className = 'review__name';
-      const avatar = document.createElement('span');
-      avatar.className = 'review__avatar';
-      avatar.setAttribute('aria-hidden', 'true');
-      avatar.textContent = name.charAt(0);
-      author.append(avatar, name);
-      li.append(stars, quote, author);
-      reviewsList.appendChild(li);
-    });
-  } else {
-    reviewsList.innerHTML = '<li class="review review--pending"><span class="pending">{{PREENCHER: avaliações do Google — ver js/main.js → CONFIG.reviews}}</span></li>';
-  }
+  CONFIG.reviews.forEach(({ name, text, rating = 5 }) => {
+    const li = document.createElement('li');
+    li.className = 'review';
+    const stars = document.createElement('p');
+    stars.className = 'review__stars';
+    stars.setAttribute('aria-label', `${rating} de 5 estrelas`);
+    stars.textContent = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+    const quote = document.createElement('blockquote');
+    quote.className = 'review__text';
+    quote.style.margin = '0';
+    quote.textContent = `“${text}”`;
+    const author = document.createElement('p');
+    author.className = 'review__name';
+    const avatar = document.createElement('span');
+    avatar.className = 'review__avatar';
+    avatar.setAttribute('aria-hidden', 'true');
+    avatar.textContent = name.charAt(0);
+    author.append(avatar, name);
+    li.append(stars, quote, author);
+    reviewsList.appendChild(li);
+  });
 
-  /* ---------- Imagens: placeholder quando o arquivo ainda não existe ---------- */
+  /* ---------- Imagens: se o arquivo não existir, o bloco é escondido ---------- */
   document.querySelectorAll('.media img').forEach((img) => {
     const fig = img.closest('.media');
     const miss = () => fig.classList.add('is-missing');
@@ -79,6 +78,20 @@ const CONFIG = {
     img.addEventListener('error', miss);
     img.addEventListener('load', () => fig.classList.remove('is-missing'));
   });
+
+  /* ---------- Botão fixo de WhatsApp ----------
+     Aparece quando o botão do topo sai da tela e some na seção final de contato. */
+  const contactZones = { hero: true, final: false };
+  const contactObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => { contactZones[entry.target.dataset.zone] = entry.isIntersecting; });
+    root.classList.toggle('show-wa', !contactZones.hero && !contactZones.final);
+  });
+  const heroActions = document.querySelector('.hero__actions');
+  const finalSection = document.getElementById('contato');
+  heroActions.dataset.zone = 'hero';
+  finalSection.dataset.zone = 'final';
+  contactObserver.observe(heroActions);
+  contactObserver.observe(finalSection);
 
   /* ---------- Menu mobile ---------- */
   const menuBtn = document.getElementById('menuBtn');
@@ -343,9 +356,8 @@ const CONFIG = {
      ========================================================================== */
   const loader = document.getElementById('loader');
   const countEl = document.getElementById('loaderCount');
-  const loaderBpm = document.getElementById('loaderBpm');
   const loaderPath = document.getElementById('loaderPath');
-  const MIN_DURATION = reduceMotion ? 500 : 2600;
+  const MIN_DURATION = reduceMotion ? 400 : 1400;
   const start = performance.now();
   let pageLoaded = document.readyState === 'complete';
   let shown = 0;
@@ -376,7 +388,6 @@ const CONFIG = {
     if (!pageLoaded) t = Math.min(t, 0.9);
     shown = Math.max(shown, easeInOut(t));
     countEl.textContent = Math.round(shown * 100);
-    loaderBpm.textContent = Math.round(60 + shown * 68);
     loaderPath.style.strokeDashoffset = (1 - shown).toFixed(4);
     if (shown >= 1) finishLoader();
     else requestAnimationFrame(tickLoader);
