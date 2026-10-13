@@ -1,0 +1,961 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nathan Lorena | Nutricionista</title>
+<meta name="description" content="Nathan Lorena, nutricionista. Acompanhamento para canetas emagrecedoras (Mounjaro, Ozempic), dieta estratégica, emagrecimento e nutrição para treino. Marque sua consulta pelo WhatsApp.">
+<meta name="theme-color" content="#08080a">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Nathan Lorena | Nutrição">
+<meta property="og:description" content="Estratégia que cabe na sua rotina. Marque sua consulta pelo WhatsApp.">
+<meta property="og:image" content="assets/retrato-busto.webp">
+<link rel="icon" href="assets/logo-monograma-hd.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/logo-monograma-hd.png">
+<link rel="preload" as="image" href="assets/nathan-recorte.webp">
+<style>
+/* ================= TOKENS ================= */
+:root{
+  --background:#08080a;
+  --foreground:#f3f1ea;
+  --surface:#111114;
+  --surface-2:#17171b;
+  --muted:#8a877d;
+  --line:rgba(243,241,234,0.1);
+  --line-strong:rgba(243,241,234,0.22);
+  --accent:#c3ae71;      /* dourado do logo NL */
+  --accent-2:#e0cd95;
+  --font-display:"Anton", sans-serif;
+  --font-sans:"Onest", sans-serif;
+  --gutter:2.5rem;
+  --section:9rem;
+  --fs-hero:28rem;     --lh-hero:0.78;
+  --fs-mega:13rem;     --lh-mega:0.86;
+  --fs-display:7.5rem; --lh-display:0.9;
+  --fs-h1:5rem;        --lh-h1:0.95;
+  --fs-h2:3.25rem;     --lh-h2:1;
+  --fs-h3:1.75rem;     --lh-h3:1.15;
+  --fs-lead:1.375rem;  --lh-lead:1.45;
+  --fs-body:1.0625rem; --lh-body:1.6;
+  --fs-eyebrow:0.8125rem; --lh-eyebrow:1.2;
+  --expo:cubic-bezier(0.16,1,0.3,1);
+  --quart:cubic-bezier(0.165,0.84,0.44,1);
+  --wipe:cubic-bezier(0.22,1,0.36,1);
+}
+
+/* ================= ADAPTIVE GRID ================= */
+html{ font-size:16px; background:#08080a; }
+@media (max-width:1920px){ html{ font-size:0.833333vw; } }
+@media (max-width:1440px){ html{ font-size:1.111111vw; } }
+@media (max-width:1024px){ html{ font-size:1.5625vw; } }
+@media (max-width:640px){
+  html{ font-size:4.444444vw; }
+  :root{ --gutter:16px; --section:6rem; }
+}
+
+/* ================= RESET ================= */
+*{ margin:0; padding:0; box-sizing:border-box; }
+img,video{ display:block; max-width:100%; }
+ul,ol{ list-style:none; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; appearance:none; text-align:inherit; }
+html.lenis, html.lenis body{ height:auto; }
+.lenis.lenis-smooth{ scroll-behavior:auto !important; }
+.lenis.lenis-stopped{ overflow:hidden; }
+body{
+  background:#08080a; color:var(--foreground);
+  font-family:var(--font-sans); font-size:var(--fs-body); line-height:var(--lh-body);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+::selection{ background:var(--accent); color:#08080a; }
+:focus-visible{ outline:2px solid var(--accent); outline-offset:4px; border-radius:2px; }
+main{ position:relative; width:100%; overflow-x:hidden; }
+
+/* ================= UTILITÁRIOS ================= */
+.eyebrow{
+  display:flex; align-items:center; gap:0.75rem;
+  font-size:var(--fs-eyebrow); line-height:var(--lh-eyebrow); font-weight:500;
+  text-transform:uppercase; letter-spacing:0.22em; color:var(--muted);
+}
+.eyebrow::before{ content:""; width:0.5rem; height:0.5rem; border-radius:9999px; background:var(--accent); flex:none; }
+
+/* revelação linha a linha */
+.ln{ display:block; overflow:hidden; padding-top:0.08em; margin-top:-0.08em; padding-bottom:0.04em; }
+.ln > span{ display:block; transform:translateY(110%); opacity:0; transition:transform 900ms var(--expo), opacity 900ms var(--expo); transition-delay:var(--d,0ms); will-change:transform; }
+.revealed .ln > span{ transform:none; opacity:1; }
+.no-anim .ln > span{ transition:none; }
+
+/* letra a letra (nome do hero) */
+.name-line{ display:block; overflow:hidden; white-space:nowrap; padding-top:0.06em; }
+.name-line .ch{ display:inline-block; transform:translateY(100%); opacity:0; transition:transform 900ms var(--expo), opacity 900ms var(--expo); transition-delay:var(--d,0ms); }
+.name-line.go .ch{ transform:none; opacity:1; }
+
+/* bloco que entra ao rolar */
+.rv{ opacity:0; transform:translateY(var(--y,16px)); transition:opacity var(--dur,520ms) var(--expo), transform var(--dur,520ms) var(--expo); transition-delay:var(--delay,0ms); }
+.rv.in{ opacity:1; transform:none; }
+
+/* ================= BOTÕES WHATSAPP ================= */
+.wa-ico{ width:1.15em; height:1.15em; flex:none; fill:currentColor; }
+.btn{
+  position:relative; overflow:hidden; isolation:isolate;
+  display:inline-flex; align-items:center; justify-content:center; gap:0.625rem;
+  min-height:3.25rem; padding:0.875rem 1.5rem; border-radius:9999px;
+  font-size:0.9375rem; line-height:1.1; font-weight:600; letter-spacing:0.02em; white-space:nowrap;
+  background:var(--accent); color:#08080a; border:1px solid var(--accent);
+  transition:transform 340ms var(--expo), background-color 300ms ease, color 300ms ease, border-color 300ms ease, box-shadow 340ms ease;
+}
+.btn::after{ /* brilho que atravessa no hover */
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.45) 50%, transparent 70%);
+  transform:translateX(-120%); transition:transform 700ms var(--expo);
+}
+.btn .arr{ display:inline-block; transition:transform 340ms var(--expo); }
+.btn:hover, .btn:focus-visible{ transform:translateY(-2px); box-shadow:0 0.75rem 2rem -0.75rem color-mix(in srgb, var(--accent) 70%, transparent); }
+.btn:hover::after, .btn:focus-visible::after{ transform:translateX(120%); }
+.btn:hover .arr, .btn:focus-visible .arr{ transform:translate(3px,-3px); }
+.btn:active{ transform:translateY(0) scale(0.98); }
+.btn--ghost{ background:transparent; color:var(--foreground); border-color:var(--line-strong); }
+.btn--ghost::after{ background:linear-gradient(120deg, transparent 30%, color-mix(in srgb, var(--accent) 30%, transparent) 50%, transparent 70%); }
+.btn--ghost:hover, .btn--ghost:focus-visible{ border-color:var(--accent); color:var(--accent); box-shadow:none; }
+.btn--lg{ min-height:3.75rem; padding:1rem 2rem; font-size:1.0625rem; }
+.btn-row{ display:flex; flex-wrap:wrap; gap:0.75rem; }
+
+/* botão flutuante */
+.wa-float{
+  position:fixed; z-index:45; right:var(--gutter); bottom:max(1.25rem, env(safe-area-inset-bottom));
+  display:flex; align-items:center; gap:0.625rem; height:3.5rem; padding:0 1.125rem 0 1rem; border-radius:9999px;
+  background:var(--accent); color:#08080a; font-weight:600; font-size:0.9375rem;
+  box-shadow:0 1rem 2.5rem -1rem rgba(0,0,0,0.8);
+  opacity:0; transform:translateY(1.5rem) scale(0.9); pointer-events:none;
+  transition:opacity 500ms var(--expo), transform 600ms var(--expo);
+}
+.wa-float .wa-ico{ width:1.6rem; height:1.6rem; }
+.wa-float::before{ content:""; position:absolute; inset:0; border-radius:inherit; border:2px solid var(--accent); animation:pulse 2.4s var(--expo) infinite; }
+.wa-float.show{ opacity:1; transform:none; pointer-events:auto; }
+.wa-float.hide{ opacity:0; transform:translateY(1.5rem) scale(0.9); pointer-events:none; }
+.wa-float:hover{ transform:translateY(-2px); }
+@keyframes pulse{ 0%{ transform:scale(1); opacity:0.7; } 100%{ transform:scale(1.35,1.6); opacity:0; } }
+
+/* ================= PRELOADER ================= */
+.preloader{
+  position:fixed; inset:0; z-index:100;
+  display:grid; place-items:center; padding:var(--gutter);
+  transition:transform 650ms var(--wipe);
+}
+.preloader::before{ content:""; position:absolute; inset:0; z-index:-10; background:radial-gradient(60% 55% at 50% 45%, #141310, var(--background) 70%); }
+.preloader.wipe{ transform:translateY(-100%); }
+.preloader.done{ pointer-events:none; visibility:hidden; }
+/* logo grande no centro */
+.pre__logo{ display:flex; flex-direction:column; align-items:center; text-align:center; transition:opacity 300ms ease-out, transform 500ms var(--expo); }
+.pre__mark{ position:relative; height:min(46svh, 24rem); aspect-ratio:560/688; }
+@media (max-width:639px){ .pre__mark{ height:min(42svh, 15rem); } }
+.pre__mark img{ width:100%; height:100%; clip-path:inset(100% 0 0 0); animation:markIn 1300ms var(--expo) 150ms forwards; }
+.pre__mark::after{ /* brilho que corre por dentro do logo */
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(115deg, transparent 35%, rgba(255,246,214,0.85) 50%, transparent 65%) no-repeat;
+  background-size:250% 100%; background-position:150% 0;
+  -webkit-mask:url(assets/logo-monograma-hd.png) center/contain no-repeat; mask:url(assets/logo-monograma-hd.png) center/contain no-repeat;
+  animation:markShine 900ms ease-in-out 1000ms forwards;
+}
+.pre__name{ margin-top:2.25rem; font-size:1.75rem; font-weight:400; line-height:1; text-transform:uppercase; letter-spacing:0.32em; margin-right:-0.32em; color:var(--accent);
+  opacity:0; transform:translateY(12px); animation:fadeUp 900ms var(--expo) 700ms forwards; }
+.pre__sub{ margin-top:0.875rem; font-size:0.75rem; line-height:1; text-transform:uppercase; letter-spacing:0.6em; margin-right:-0.6em; color:color-mix(in srgb, var(--accent) 70%, transparent);
+  opacity:0; transform:translateY(12px); animation:fadeUp 900ms var(--expo) 850ms forwards; }
+@media (max-width:639px){ .pre__name{ font-size:1.25rem; margin-top:1.5rem; } .pre__sub{ font-size:0.6875rem; } }
+.pre__count{ position:absolute; right:var(--gutter); bottom:var(--gutter); font-family:var(--font-display); font-size:var(--fs-h2); line-height:1; font-variant-numeric:tabular-nums; transition:opacity 300ms ease-out; }
+.pre__count i{ font-style:normal; color:var(--accent); }
+.pre__bar{ position:absolute; left:0; bottom:0; height:2px; width:100%; background:var(--accent); transform-origin:left; transform:scaleX(0); transition:opacity 300ms ease-out; }
+.preloader.fade .pre__count, .preloader.fade .pre__bar{ opacity:0; }
+.preloader.fade .pre__logo{ opacity:0; transform:scale(0.96); }
+@keyframes markIn{ to{ clip-path:inset(0 0 0 0); } }
+@keyframes markShine{ to{ background-position:-50% 0; } }
+@keyframes fadeUp{ to{ opacity:1; transform:none; } }
+
+/* ================= NAV ================= */
+.site-nav{ position:fixed; inset-inline:0; top:0; z-index:50; pointer-events:none; transition:background-color 400ms ease, backdrop-filter 400ms ease; }
+.site-nav.scrolled{ background:rgba(8,8,10,0.72); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); }
+.site-nav nav{ pointer-events:auto; display:flex; align-items:center; justify-content:space-between; gap:2rem; padding:1.25rem var(--gutter); }
+.logo{ display:flex; align-items:center; gap:0.75rem; position:relative; z-index:60; }
+.logo__mono{ display:grid; place-items:center; width:2.5rem; height:2.5rem; border-radius:9999px; border:1px solid var(--line-strong); }
+.logo__mono img{ width:auto; height:1.3rem; }
+.logo__name{ display:none; font-size:var(--fs-eyebrow); font-weight:500; text-transform:uppercase; letter-spacing:0.22em; color:var(--muted); }
+@media (min-width:640px){ .logo__name{ display:block; } }
+.nav__right{ display:flex; align-items:center; gap:2.5rem; }
+.nav__links{ display:none; gap:2.25rem; }
+.nav__links a{ position:relative; font-size:var(--fs-eyebrow); font-weight:500; text-transform:uppercase; letter-spacing:0.18em; color:var(--muted); transition:color 300ms ease; }
+.nav__links a::after{ content:""; position:absolute; bottom:-0.25rem; left:0; height:1px; width:0; background:var(--accent); transition:width 340ms var(--expo); }
+.nav__links a:hover, .nav__links a:focus-visible{ color:var(--foreground); }
+.nav__links a:hover::after, .nav__links a:focus-visible::after{ width:100%; }
+.nav__cta{ display:none; min-height:2.75rem; padding:0.625rem 1.25rem; font-size:0.875rem; }
+.burger{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.375rem; width:2.5rem; height:2.5rem; position:relative; z-index:60; }
+.burger span{ display:block; height:0.125rem; width:1.5rem; background:var(--foreground); transition:transform 420ms var(--expo), opacity 300ms ease; }
+.burger[aria-expanded="true"] span:nth-child(1){ transform:translateY(0.5rem) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+.burger[aria-expanded="true"] span:nth-child(3){ transform:translateY(-0.5rem) rotate(-45deg); }
+@media (min-width:768px){ .nav__cta{ display:inline-flex; } }
+@media (min-width:1024px){ .nav__links{ display:flex; } .burger{ display:none; } }
+.menu{
+  position:fixed; inset:0; z-index:50; background:var(--background);
+  display:flex; flex-direction:column; justify-content:center; gap:2.5rem; padding-inline:var(--gutter);
+  opacity:0; visibility:hidden; transition:opacity 450ms ease-out, visibility 0s linear 450ms;
+}
+.menu.open{ opacity:1; visibility:visible; transition:opacity 450ms ease-out, visibility 0s; }
+.menu ul{ display:flex; flex-direction:column; gap:1rem; }
+.menu ul a{ display:block; font-family:var(--font-display); font-size:var(--fs-h2); text-transform:uppercase; line-height:1; letter-spacing:-0.01em; }
+.menu ul a, .menu .menu__cta{ transform:translateY(48px); opacity:0; transition:transform 420ms var(--expo), opacity 420ms ease-out; }
+.menu.open ul a, .menu.open .menu__cta{ transform:none; opacity:1; }
+.menu__cta{ display:flex; flex-direction:column; gap:0.75rem; }
+.menu__cta .btn{ width:100%; }
+@media (min-width:1024px){ .menu{ display:none; } }
+
+/* ================= HERO ================= */
+.hero{ position:relative; display:flex; flex-direction:column; min-height:100svh; overflow:hidden; }
+.hero__top{ position:relative; z-index:30; display:flex; flex-direction:column; gap:1.75rem; padding:6.5rem var(--gutter) 0; }
+.hero__roles{ font-family:var(--font-display); font-weight:400; text-transform:uppercase; line-height:1.05; letter-spacing:-0.01em; font-size:var(--fs-h3); }
+.hero__roles .ln > span{ transition-duration:760ms; }
+.hero__side{ display:flex; flex-direction:column; gap:1.5rem; }
+.hero__desc{ max-width:26rem; font-size:var(--fs-body); line-height:var(--lh-body); color:var(--muted); }
+.hero__desc strong{ color:var(--foreground); font-weight:500; }
+.hero__ctas.rv{ --y:16px; }
+@media (min-width:640px){
+  .hero__top{ flex-direction:row; align-items:flex-start; justify-content:space-between; padding-top:8rem; }
+  .hero__roles{ font-size:var(--fs-h2); }
+  /* cartão escuro: o texto e os botões ficam legíveis por cima do nome dourado */
+  .hero__side{ width:27rem; padding:1.75rem; border:1px solid var(--line); border-radius:0.375rem;
+    background:rgba(8,8,10,0.72); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); }
+  .hero__ctas{ flex-direction:column; }
+  .hero__ctas .btn{ width:100%; }
+  .hero__ctas .btn--ghost{ background:rgba(8,8,10,0.6); }
+}
+.hero__portrait{ position:absolute; z-index:20; bottom:0; left:50%; transform:translateX(-50%); height:86vh; width:80vw; }
+.hero__portrait img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center bottom; }
+@media (min-width:640px){ .hero__portrait{ width:48vw; } }
+@media (min-width:1024px){ .hero__portrait{ width:36vw; } }
+
+/* formação acima da cabeça */
+.study{
+  position:absolute; z-index:31; left:50%; top:0; transform:translate(-50%, -100%);
+  display:flex; flex-direction:column; align-items:center; text-align:center; gap:0.25rem;
+  font-size:var(--fs-eyebrow); line-height:1.35; text-transform:uppercase; letter-spacing:0.2em; color:var(--foreground);
+  white-space:nowrap; opacity:0; transition:opacity 500ms ease;
+}
+.study.placed{ opacity:1; }
+.study b{ font-weight:600; color:var(--accent); }
+.study span{ color:var(--muted); }
+.study::after{ content:""; width:1px; height:0.875rem; margin-top:0.25rem; background:linear-gradient(var(--accent), transparent); }
+.caret{ display:inline-block; width:0.08em; height:1em; margin-left:0.12em; vertical-align:-0.12em; background:var(--accent); animation:blink 900ms steps(1) infinite; }
+.caret.off{ opacity:0; animation:none; transition:opacity 400ms ease; }
+@keyframes blink{ 50%{ opacity:0; } }
+
+.hero__fade{ position:absolute; inset-inline:0; bottom:0; z-index:20; height:26vh; background:linear-gradient(to bottom, transparent, #08080a); pointer-events:none; }
+.hero__name{
+  position:absolute; inset-inline:0; bottom:0; z-index:10; transform:translateY(6%);
+  display:flex; flex-direction:column; align-items:center;
+  font-family:var(--font-display); font-weight:400; text-transform:uppercase;
+  line-height:var(--lh-hero); letter-spacing:-0.01em; color:var(--accent);
+  font-size:min(var(--fs-mega), 31vw); pointer-events:none;
+}
+@media (min-width:640px){ .hero__name{ font-size:min(var(--fs-hero), 30vw); } }
+.hero__cue{ position:absolute; z-index:30; bottom:2rem; left:var(--gutter); display:flex; align-items:center; gap:0.75rem; font-size:var(--fs-eyebrow); line-height:var(--lh-eyebrow); text-transform:uppercase; letter-spacing:0.22em; color:var(--muted); }
+.hero__cue::before{ content:""; width:2.5rem; height:1px; background:var(--accent); }
+/* celular: tudo empilhado; a foto entra no fluxo e o nome passa à frente, sobre as pernas */
+@media (max-width:639px){
+  .hero{ min-height:auto; }
+  .hero__roles{ display:grid; grid-template-columns:auto auto; justify-content:start; column-gap:0.6em; }
+  .hero__ctas .btn{ flex:1 1 100%; }
+  .hero__portrait{ position:relative; left:auto; transform:none; width:100%; height:68svh; margin-top:4.5rem; }
+  .hero__name{ z-index:25; }
+  .hero__cue{ display:none; }
+}
+
+/* ================= MARQUEE ================= */
+.marquee{ overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding-block:2rem; }
+.marquee__track{ display:flex; width:max-content; flex-wrap:nowrap; animation:marquee 22s linear infinite; }
+.marquee__item{ display:flex; align-items:center; flex:none; font-family:var(--font-display); font-size:var(--fs-h2); line-height:1; text-transform:uppercase; letter-spacing:-0.01em; white-space:nowrap; }
+.marquee__item::after{ content:""; margin-inline:2rem; width:0.625rem; height:0.625rem; border-radius:9999px; background:var(--accent); }
+@keyframes marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+/* ================= SEÇÕES ================= */
+.section{ padding:var(--section) var(--gutter); }
+.sec-title{ margin-top:1.5rem; font-family:var(--font-display); font-weight:400; text-transform:uppercase; line-height:0.95; letter-spacing:-0.01em; font-size:var(--fs-h2); }
+.sec-title .ln > span{ transition-duration:900ms; }
+@media (min-width:640px){ .sec-title.big{ font-size:var(--fs-h1); } }
+.sec-head{ display:flex; flex-direction:column; gap:1.5rem; }
+@media (min-width:640px){ .sec-head{ flex-direction:row; align-items:flex-end; justify-content:space-between; } }
+.sec-tag{ font-size:var(--fs-eyebrow); line-height:var(--lh-eyebrow); text-transform:uppercase; letter-spacing:0.22em; color:var(--muted); }
+.sec-cta{ margin-top:3rem; }
+
+/* Resultados */
+.stats{ margin-top:4rem; display:grid; grid-template-columns:1fr; border-top:1px solid var(--line); }
+.stat{ display:flex; flex-direction:column; gap:1rem; border-bottom:1px solid var(--line); padding-block:2.5rem; }
+.stat dd{ font-family:var(--font-display); font-size:var(--fs-display); line-height:1; letter-spacing:-0.01em; font-variant-numeric:tabular-nums; transition:color 340ms ease-out; }
+.stat:hover dd, .stat--main dd{ color:var(--accent); }
+.stat dt{ max-width:20ch; text-transform:uppercase; letter-spacing:0.14em; color:var(--muted); }
+.stat--main dt{ color:var(--foreground); }
+@media (min-width:640px) and (max-width:1023px){ .stats{ grid-template-columns:1fr 1fr; } .stat:nth-child(even){ border-left:1px solid var(--line); padding-left:2rem; } }
+@media (min-width:1024px){ .stats{ grid-template-columns:repeat(4,1fr); } .stat{ padding-block:3rem; } .stat:not(:nth-child(4n+1)){ border-left:1px solid var(--line); padding-left:2rem; } }
+.proof-cta{ margin-top:3rem; display:flex; flex-direction:column; gap:1.5rem; }
+.proof-cta p{ max-width:34ch; font-size:var(--fs-lead); line-height:var(--lh-lead); color:var(--muted); }
+@media (min-width:768px){ .proof-cta{ flex-direction:row; align-items:center; justify-content:space-between; } }
+
+/* Abordagem */
+.story{ display:grid; grid-template-columns:1fr; gap:3rem; }
+@media (min-width:1024px){ .story{ grid-template-columns:repeat(12,1fr); gap:var(--gutter); } .story__l{ grid-column:span 6; } .story__r{ grid-column:span 6; padding-top:0.5rem; } }
+.story__l .sec-title{ max-width:16ch; }
+.story__body{ margin-top:2rem; max-width:46ch; font-size:var(--fs-lead); line-height:var(--lh-lead); color:var(--muted); }
+.principle{ display:grid; grid-template-columns:auto 1fr; column-gap:1.5rem; border-top:1px solid var(--line); padding-block:2rem; }
+.principle:last-child{ border-bottom:1px solid var(--line); }
+.principle__n{ font-size:var(--fs-h3); line-height:var(--lh-h3); font-weight:600; font-variant-numeric:tabular-nums; color:var(--accent); }
+.principle h3{ font-size:var(--fs-h3); line-height:var(--lh-h3); font-weight:600; letter-spacing:-0.01em; }
+.principle p{ margin-top:0.75rem; max-width:44ch; color:var(--muted); }
+
+/* Especialidades */
+.specs .sec-title{ max-width:14ch; }
+.specs__grid{ margin-top:4rem; display:grid; grid-template-columns:1fr; border-top:1px solid var(--line); border-left:1px solid var(--line); }
+@media (min-width:768px){ .specs__grid{ grid-template-columns:1fr 1fr; } }
+@media (min-width:1024px){ .specs__grid{ grid-template-columns:repeat(3,1fr); } }
+.spec{
+  position:relative; overflow:hidden; display:flex; flex-direction:column;
+  border-right:1px solid var(--line); border-bottom:1px solid var(--line);
+  padding:2.5rem 2rem 2rem; min-height:26rem;
+  transition:background-color 400ms ease;
+}
+.spec::before{ /* luz dourada que acende no hover */
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:radial-gradient(90% 70% at 100% 0%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%);
+  opacity:0; transition:opacity 500ms ease;
+}
+.spec > *{ position:relative; z-index:1; }
+.spec:hover{ background:var(--surface); }
+.spec:hover::before{ opacity:1; }
+.spec__n{ position:absolute; top:1.25rem; right:1.5rem; font-family:var(--font-display); font-size:5.5rem; line-height:1; color:transparent; -webkit-text-stroke:1px var(--line-strong); transition:-webkit-text-stroke-color 400ms ease, transform 600ms var(--expo); }
+.spec:hover .spec__n{ -webkit-text-stroke-color:var(--accent); transform:translateY(-4px); }
+.spec__tag{ font-size:var(--fs-eyebrow); line-height:var(--lh-eyebrow); font-weight:500; text-transform:uppercase; letter-spacing:0.18em; color:var(--accent); }
+.spec h3{ margin-top:1rem; max-width:12ch; font-family:var(--font-display); font-weight:400; font-size:2.75rem; line-height:0.98; text-transform:uppercase; letter-spacing:-0.005em; }
+.spec p{ margin-top:1.25rem; max-width:36ch; color:var(--muted); }
+.spec small{ display:block; margin-top:0.75rem; font-size:0.8125rem; line-height:1.4; color:var(--muted); opacity:0.8; }
+.spec .btn{ margin-top:auto; align-self:flex-start; }
+.spec__body{ margin-bottom:2rem; }
+.spec--hot{ background:linear-gradient(160deg, color-mix(in srgb, var(--accent) 10%, var(--background)), var(--background) 60%); }
+.spec--hot .spec__n{ -webkit-text-stroke-color:color-mix(in srgb, var(--accent) 60%, transparent); }
+.specs__help{ margin-top:3rem; display:flex; flex-direction:column; gap:1.5rem; border:1px solid var(--line-strong); padding:2rem; border-radius:0.25rem; }
+.specs__help h3{ font-family:var(--font-display); font-weight:400; font-size:var(--fs-h3); line-height:1.1; text-transform:uppercase; }
+.specs__help p{ margin-top:0.5rem; color:var(--muted); }
+@media (min-width:768px){ .specs__help{ flex-direction:row; align-items:center; justify-content:space-between; padding:2.5rem 3rem; } }
+
+/* Como começar */
+.steps{ margin-top:4rem; display:grid; grid-template-columns:1fr; gap:2.5rem; counter-reset:s; }
+@media (min-width:768px){ .steps{ grid-template-columns:repeat(3,1fr); gap:var(--gutter); } }
+.step{ border-top:1px solid var(--line-strong); padding-top:1.5rem; }
+.step__n{ font-family:var(--font-display); font-size:var(--fs-h1); line-height:1; color:var(--accent); }
+.step h3{ margin-top:1rem; font-size:var(--fs-h3); line-height:var(--lh-h3); font-weight:600; letter-spacing:-0.01em; }
+.step p{ margin-top:0.75rem; max-width:34ch; color:var(--muted); }
+
+/* Dúvidas */
+.voices__grid{ margin-top:4rem; display:grid; grid-template-columns:1fr; gap:3rem; }
+@media (min-width:1024px){ .voices__grid{ grid-template-columns:repeat(12,1fr); gap:var(--gutter); } .voices__list{ grid-column:span 5; } .voices__panel{ grid-column:span 7; } }
+.voice-btn{ width:100%; display:flex; align-items:baseline; gap:1.25rem; border-top:1px solid var(--line); padding-block:1.75rem; text-align:left; }
+.voices__list li:last-child .voice-btn{ border-bottom:1px solid var(--line); }
+.voice-btn__n{ font-size:var(--fs-eyebrow); font-variant-numeric:tabular-nums; letter-spacing:0.18em; color:var(--muted); transition:color 300ms ease; }
+.voice-btn__body{ flex:1; }
+.voice-btn__name{ display:block; font-size:var(--fs-h3); line-height:var(--lh-h3); font-weight:600; letter-spacing:-0.01em; color:var(--muted); transition:color 300ms ease; }
+.voice-btn__role{ display:block; margin-top:0.25rem; font-size:var(--fs-eyebrow); line-height:var(--lh-eyebrow); text-transform:uppercase; letter-spacing:0.18em; color:var(--muted); }
+.voice-btn__rule{ align-self:center; height:1px; width:0; background:var(--accent); transition:width 420ms var(--expo); }
+.voice-btn.active .voice-btn__n{ color:var(--accent); }
+.voice-btn.active .voice-btn__name{ color:var(--foreground); }
+.voice-btn.active .voice-btn__rule{ width:2.5rem; }
+.voices__panel{ display:grid; grid-template-columns:1fr; gap:2rem; align-items:start; }
+.voices__panel blockquote{ order:2; }
+.voices__panel .portrait{ order:1; }
+@media (min-width:640px){ .voices__panel{ grid-template-columns:1fr auto; } .voices__panel blockquote{ order:1; } .voices__panel .portrait{ order:2; width:16rem; } }
+.quote{ max-width:30ch; font-size:var(--fs-h3); line-height:1.3; font-weight:500; letter-spacing:-0.01em; }
+.quote .w{ display:inline-block; transform:translateY(18px); opacity:0; transition:transform 520ms var(--quart), opacity 520ms var(--quart); transition-delay:var(--d,0ms); }
+.quote.play .w{ transform:none; opacity:1; }
+.voices__panel footer{ margin-top:2rem; font-size:var(--fs-eyebrow); line-height:var(--lh-eyebrow); text-transform:uppercase; letter-spacing:0.18em; color:var(--muted); }
+.voices__panel .btn{ margin-top:2rem; }
+.portrait{ width:100%; }
+.portrait figure{ position:relative; overflow:hidden; aspect-ratio:4/5; width:100%; border-radius:0.125rem; background:var(--surface); }
+.portrait img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity 260ms ease; }
+.portrait img.swap{ opacity:0; }
+.portrait.rv{ transform:scale(1.06); transition-duration:640ms; }
+.portrait.rv.in{ transform:none; }
+
+/* Contato */
+.contact{ padding-top:var(--section); padding-inline:var(--gutter); }
+.contact .sec-title{ max-width:18ch; font-size:var(--fs-h1); }
+@media (min-width:640px){ .contact .sec-title{ font-size:var(--fs-display); } }
+@media (max-width:639px){ .contact .sec-title{ font-size:3.5rem; } }
+.contact__p{ margin-top:2rem; max-width:44ch; font-size:var(--fs-lead); line-height:var(--lh-lead); color:var(--muted); }
+.cta-wrap{ margin-top:3rem; display:flex; flex-direction:column; gap:2rem; align-items:flex-start; }
+.cta{ display:inline-flex; align-items:baseline; gap:0.75rem; font-size:var(--fs-h3); line-height:1.1; font-weight:600; letter-spacing:-0.01em;
+  transition:transform 340ms ease-out, color 340ms ease-out; }
+.cta i{ font-style:normal; color:var(--accent); }
+.cta:hover, .cta:focus-visible{ transform:translateX(14px); color:var(--accent); }
+@media (min-width:640px){ .cta{ gap:1rem; font-size:var(--fs-h1); } }
+.foot{ margin-top:var(--section); border-top:1px solid var(--line); padding-block:3rem 6rem; display:grid; grid-template-columns:1fr; gap:2.5rem; }
+@media (min-width:1024px){ .foot{ grid-template-columns:repeat(12,1fr); padding-bottom:3rem; } .foot__l{ grid-column:span 6; } .foot__m{ grid-column:span 3; } .foot__r{ grid-column:span 3; text-align:right; } }
+.foot__sig{ font-family:var(--font-display); font-size:var(--fs-h2); line-height:1; text-transform:uppercase; letter-spacing:-0.01em; }
+.foot__sub{ margin-top:1rem; font-size:var(--fs-eyebrow); line-height:var(--lh-eyebrow); text-transform:uppercase; letter-spacing:0.22em; color:var(--muted); }
+.foot__m ul{ display:flex; flex-direction:column; gap:0.5rem; }
+.foot__m a{ display:inline-flex; align-items:center; color:var(--muted); transition:color 300ms ease; }
+.foot__m a::before{ content:""; height:1px; width:0; margin-right:0; background:var(--accent); transition:width 340ms var(--expo), margin 340ms var(--expo); }
+.foot__m a:hover, .foot__m a:focus-visible{ color:var(--foreground); }
+.foot__m a:hover::before, .foot__m a:focus-visible::before{ width:1.5rem; margin-right:0.625rem; }
+.foot__r p{ font-size:var(--fs-eyebrow); line-height:1.6; text-transform:uppercase; letter-spacing:0.18em; color:var(--muted); }
+
+/* ================= REDUCED MOTION ================= */
+@media (prefers-reduced-motion: reduce){
+  .preloader{ display:none; }
+  .marquee__track, .wa-float::before, .caret{ animation:none; }
+  .ln > span, .name-line .ch, .rv, .quote .w, .portrait.rv{ transition:none !important; transform:none !important; opacity:1 !important; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
+</svg>
+
+<!-- ============ PRELOADER ============ -->
+<div class="preloader" id="preloader" role="presentation">
+  <div class="pre__logo">
+    <div class="pre__mark"><img src="assets/logo-monograma-hd.png" alt="" width="560" height="688"></div>
+    <p class="pre__name">Nathan Lorena</p>
+    <p class="pre__sub">Nutrição</p>
+  </div>
+  <p class="pre__count"><span id="pre-n">0</span><i>%</i></p>
+  <span class="pre__bar" id="pre-bar"></span>
+</div>
+
+<!-- ============ NAV ============ -->
+<header class="site-nav" id="site-nav">
+  <nav aria-label="Principal">
+    <a class="logo" href="#top" aria-label="Nathan Lorena, início">
+      <span class="logo__mono"><img src="assets/logo-monograma-hd.png" alt="" width="560" height="688"></span>
+      <span class="logo__name">Nathan Lorena</span>
+    </a>
+    <div class="nav__right">
+      <ul class="nav__links">
+        <li><a href="#resultados">Resultados</a></li>
+        <li><a href="#especialidades">Especialidades</a></li>
+        <li><a href="#como-comecar">Como começar</a></li>
+        <li><a href="#duvidas">Dúvidas</a></li>
+      </ul>
+      <a class="btn nav__cta" data-wa="consulta" href="#contato"><svg class="wa-ico"><use href="#wa"/></svg>Marcar consulta</a>
+      <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+<div class="menu" id="menu" aria-hidden="true">
+  <ul>
+    <li><a href="#resultados">Resultados</a></li>
+    <li><a href="#especialidades">Especialidades</a></li>
+    <li><a href="#como-comecar">Como começar</a></li>
+    <li><a href="#duvidas">Dúvidas</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <div class="menu__cta">
+    <a class="btn btn--lg" data-wa="consulta" href="#contato"><svg class="wa-ico"><use href="#wa"/></svg>Marcar uma consulta</a>
+    <a class="btn btn--ghost btn--lg" data-wa="analise" href="#contato">Marcar uma análise</a>
+  </div>
+</div>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero__top">
+    <h2 class="hero__roles" id="roles" aria-label="Nutricionista, estratégia, precisão, constância">
+      <span class="ln" aria-hidden="true"><span>Nutricionista</span></span>
+      <span class="ln" aria-hidden="true"><span>Estratégia</span></span>
+      <span class="ln" aria-hidden="true"><span>Precisão</span></span>
+      <span class="ln" aria-hidden="true"><span>Constância</span></span>
+    </h2>
+    <div class="hero__side">
+      <p class="hero__desc rv" id="hero-desc">Emagrecimento, canetas como Mounjaro, dieta estratégica e nutrição para treino. <strong>Um plano feito para a sua rotina</strong>, com acompanhamento de perto do começo ao fim.</p>
+      <div class="btn-row hero__ctas rv" id="hero-ctas">
+        <a class="btn btn--lg" data-wa="consulta" href="#contato"><svg class="wa-ico"><use href="#wa"/></svg>Marcar uma consulta</a>
+        <a class="btn btn--ghost btn--lg" data-wa="analise" href="#contato">Marcar uma análise <span class="arr" aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__portrait" id="hero-portrait">
+    <!-- formação: troque o texto aqui (a digitação acontece sozinha) -->
+    <p class="study" id="hero-study"><span class="typed"><b>Bacharel em Nutrição</b><br><span>CRN {{PREENCHER}}</span></span></p>
+    <img src="assets/nathan-recorte.webp" alt="Nathan Lorena, nutricionista, de terno azul-marinho" width="1199" height="1312" fetchpriority="high">
+  </div>
+  <div class="hero__fade" aria-hidden="true"></div>
+
+  <h1 class="hero__name" aria-label="Nathan Lorena, nutricionista">
+    <span class="name-line" data-letters aria-hidden="true">Nathan</span>
+    <span class="name-line" data-letters aria-hidden="true">Lorena</span>
+  </h1>
+
+  <p class="hero__cue rv" id="hero-cue">Role para conhecer</p>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<section class="marquee" aria-label="Princípios do atendimento">
+  <div class="marquee__track" id="marquee">
+    <span class="marquee__item">Comida de verdade</span>
+    <span class="marquee__item">Plano sob medida</span>
+    <span class="marquee__item">Ciência aplicada</span>
+    <span class="marquee__item">Rotina possível</span>
+    <span class="marquee__item">Constância acima da perfeição</span>
+  </div>
+</section>
+
+<!-- ============ RESULTADOS ============ -->
+<section class="section" id="resultados">
+  <div class="sec-head">
+    <div>
+      <p class="eyebrow">Resultados</p>
+      <h2 class="sec-title big" data-lines>Gente real, rotina real.</h2>
+    </div>
+  </div>
+  <dl class="stats">
+    <!-- PACIENTES: troque o X pelo número real (ex.: data-count="350"). O número conta sozinho ao aparecer. -->
+    <div class="stat stat--main rv" style="--dur:560ms;--delay:0ms"><dd data-count="X" data-prefix="+">+X</dd><dt>Pacientes que já melhoraram com o acompanhamento</dt></div>
+    <div class="stat rv" style="--dur:560ms;--delay:110ms"><dd>1:1</dd><dt>Atendimento individual do início ao fim</dt></div>
+    <div class="stat rv" style="--dur:560ms;--delay:220ms"><dd>100%</dd><dt>Plano escrito para a sua rotina</dt></div>
+    <div class="stat rv" style="--dur:560ms;--delay:330ms"><dd>0</dd><dt>Dietas de modelo pronto</dt></div>
+  </dl>
+  <div class="proof-cta rv">
+    <p>O próximo a mudar a relação com a comida pode ser você. O primeiro passo leva um minuto.</p>
+    <a class="btn btn--lg" data-wa="consulta" href="#contato"><svg class="wa-ico"><use href="#wa"/></svg>Quero marcar minha consulta</a>
+  </div>
+</section>
+
+<!-- ============ ABORDAGEM ============ -->
+<section class="section" id="abordagem">
+  <div class="story">
+    <div class="story__l">
+      <p class="eyebrow">A abordagem</p>
+      <h2 class="sec-title big" data-lines>Estratégia que cabe na sua rotina.</h2>
+      <p class="story__body rv">Nutrição não é uma lista de proibições. É estratégia: entender como você vive, trabalha, treina e come, e transformar isso num plano que você consegue seguir por meses, não por dias. Cada orientação tem um motivo, e você sabe qual é.</p>
+      <div class="sec-cta rv" style="--delay:120ms">
+        <a class="btn btn--ghost btn--lg" data-wa="analise" href="#contato"><svg class="wa-ico"><use href="#wa"/></svg>Marcar uma análise <span class="arr" aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <ul class="story__r">
+      <li class="principle rv" style="--dur:560ms;--delay:0ms">
+        <span class="principle__n">01</span>
+        <div><h3>Ouvir antes de prescrever</h3><p>A primeira consulta é sobre você: rotina, histórico, exames, preferências e o que já tentou. O plano nasce dessa conversa.</p></div>
+      </li>
+      <li class="principle rv" style="--dur:560ms;--delay:90ms">
+        <span class="principle__n">02</span>
+        <div><h3>Sob medida, não de modelo</h3><p>Nada de dieta copiada. Quantidades, horários e escolhas pensados para o seu dia real, inclusive para os dias que fogem do roteiro.</p></div>
+      </li>
+      <li class="principle rv" style="--dur:560ms;--delay:180ms">
+        <span class="principle__n">03</span>
+        <div><h3>Ciência sem radicalismo</h3><p>Orientações baseadas em evidências, sem modismos e sem cortar grupos alimentares quando não existe motivo clínico.</p></div>
+      </li>
+      <li class="principle rv" style="--dur:560ms;--delay:270ms">
+        <span class="principle__n">04</span>
+        <div><h3>Acompanhar para ajustar</h3><p>O corpo responde e a rotina muda. O acompanhamento existe para ajustar a rota com você, não para cobrar perfeição.</p></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ ESPECIALIDADES ============ -->
+<section class="section specs" id="especialidades">
+  <div class="sec-head">
+    <div>
+      <p class="eyebrow">Especialidades</p>
+      <h2 class="sec-title big" data-lines>Qual é o seu objetivo?</h2>
+    </div>
+    <p class="sec-tag">06 / Especialidades</p>
+  </div>
+  <ul class="specs__grid">
+    <li class="spec spec--hot rv" style="--y:40px;--dur:620ms">
+      <span class="spec__n" aria-hidden="true">01</span>
+      <div class="spec__body">
+        <p class="spec__tag">Mounjaro · Ozempic</p>
+        <h3>Canetas emagrecedoras</h3>
+        <p>Acompanhamento nutricional para quem usa as canetas: proteger a massa magra, driblar enjoos e manter o resultado quando o tratamento acabar.</p>
+        <small>A prescrição do medicamento é feita pelo médico.</small>
+      </div>
+      <a class="btn" data-wa="Olá, Nathan! Vim pelo site. Uso (ou vou usar) caneta emagrecedora e quero o acompanhamento nutricional." href="#contato"><svg class="wa-ico"><use href="#wa"/></svg>Quero esse acompanhamento</a>
+    </li>
+    <li class="spec rv" style="--y:40px;--dur:620ms;--delay:90ms">
+      <span class="spec__n" aria-hidden="true">02</span>
+      <div class="spec__body">
+        <p class="spec__tag">Dieta regrada</p>
+        <h3>Dieta estratégica</h3>
+        <p>Cardápio com quantidades, horários e substituições claras, montado em cima do que você gosta de comer. Regra sem sofrimento.</p>
+      </div>
+      <a class="btn btn--ghost" data-wa="Olá, Nathan! Vim pelo site e quero uma dieta estratégica." href="#contato"><svg class="wa-ico"><use href="#wa"/></svg>Quero minha dieta</a>
+    </li>
+    <li class="spec rv" style="--y:40px;--dur:620ms;--delay:180ms">
+      <span class="spec__n" aria-hidden="true">03</span>
+      <div class="spec__body">
+        <p class="spec__tag">Hipertrofia · Performance</p>
+        <h3>Nutrição para treino</h3>
+        <p>Alimentação planejada em torno do treino para ganhar massa, render mais e recuperar melhor, do pré ao pós-treino.</p>
+      </div>
+      <a class="btn btn--ghost" data-wa="Olá, Nathan! Vim pelo site e quero ajustar minha alimentação para o treino." href="#contato"><svg class="wa-ico"><use href="#wa"/></svg>Quero render mais</a>
+    </li>
+    <li class="spec rv" style="--y:40px;--dur:620ms;--delay:0ms">
+      <span class="spec__n" aria-hidden="true">04</span>
+      <div class="spec__body">
+        <p class="spec__tag">Perda de gordura</p>
+        <h3>Emagrecimento</h3>
+        <p>Perder gordura preservando massa magra e energia para o dia, sem dieta da moda e sem passar fome.</p>
+      </div>
+      <a class="btn btn--ghost" data-wa="Olá, Nathan! Vim pelo site e quero emagrecer com acompanhamento." href="#contato"><svg class="wa-ico"><use href="#wa"/></svg>Quero emagrecer</a>
+    </li>
+    <li class="spec rv" style="--y:40px;--dur:620ms;--delay:90ms">
+      <span class="spec__n" aria-hidden="true">05</span>
+      <div class="spec__body">
+        <p class="spec__tag">Nutrição clínica</p>
+        <h3>Saúde &amp; exames</h3>
+        <p>Alimentação orientada pelos seus exames e pelo seu histórico: colesterol, glicemia, intestino e mais.</p>
+      </div>
+      <a class="btn btn--ghost" data-wa="Olá, Nathan! Vim pelo site e quero cuidar da saúde pela alimentação." href="#contato"><svg class="wa-ico"><use href="#wa"/></svg>Quero cuidar da saúde</a>
+    </li>
+    <li class="spec rv" style="--y:40px;--dur:620ms;--delay:180ms">
+      <span class="spec__n" aria-hidden="true">06</span>
+      <div class="spec__body">
+        <p class="spec__tag">Rotina &amp; comportamento</p>
+        <h3>Reeducação alimentar</h3>
+        <p>Organizar a semana, comer fora sem culpa e ganhar autonomia para manter o ritmo sozinho.</p>
+      </div>
+      <a class="btn btn--ghost" data-wa="Olá, Nathan! Vim pelo site e quero fazer uma reeducação alimentar." href="#contato"><svg class="wa-ico"><use href="#wa"/></svg>Quero começar</a>
+    </li>
+  </ul>
+  <div class="specs__help rv">
+    <div>
+      <h3>Não sabe qual é o seu caso?</h3>
+      <p>Marque uma análise. A gente conversa e descobre juntos o melhor caminho.</p>
+    </div>
+    <a class="btn btn--lg" data-wa="analise" href="#contato"><svg class="wa-ico"><use href="#wa"/></svg>Marcar uma análise</a>
+  </div>
+</section>
+
+<!-- ============ COMO COMEÇAR ============ -->
+<section class="section" id="como-comecar">
+  <div class="sec-head">
+    <div>
+      <p class="eyebrow">Como começar</p>
+      <h2 class="sec-title big" data-lines>Três passos. O primeiro é agora.</h2>
+    </div>
+  </div>
+  <ol class="steps">
+    <li class="step rv" style="--delay:0ms"><p class="step__n">01</p><h3>Chame no WhatsApp</h3><p>Clique em qualquer botão do site. A mensagem já vai pronta, é só enviar.</p></li>
+    <li class="step rv" style="--delay:110ms"><p class="step__n">02</p><h3>Análise do seu caso</h3><p>Entendo o seu objetivo, a sua rotina e o que você já tentou, e explico como vai funcionar.</p></li>
+    <li class="step rv" style="--delay:220ms"><p class="step__n">03</p><h3>Consulta e plano</h3><p>Você sai com um plano feito para você e segue com acompanhamento para ajustar a rota.</p></li>
+  </ol>
+  <div class="sec-cta btn-row rv">
+    <a class="btn btn--lg" data-wa="consulta" href="#contato"><svg class="wa-ico"><use href="#wa"/></svg>Dar o primeiro passo</a>
+  </div>
+</section>
+
+<!-- ============ DÚVIDAS ============ -->
+<section class="section" id="duvidas">
+  <div class="sec-head">
+    <div>
+      <p class="eyebrow">Dúvidas</p>
+      <h2 class="sec-title big" data-lines>Antes de agendar.</h2>
+    </div>
+  </div>
+  <div class="voices__grid">
+    <ul class="voices__list" id="voices-list">
+      <li><button class="voice-btn active" aria-pressed="true"><span class="voice-btn__n">01</span><span class="voice-btn__body"><span class="voice-btn__name">Como é a primeira consulta?</span><span class="voice-btn__role">Primeiro passo</span></span><span class="voice-btn__rule"></span></button></li>
+      <li><button class="voice-btn" aria-pressed="false"><span class="voice-btn__n">02</span><span class="voice-btn__body"><span class="voice-btn__name">Uso Mounjaro. Preciso de nutricionista?</span><span class="voice-btn__role">Canetas</span></span><span class="voice-btn__rule"></span></button></li>
+      <li><button class="voice-btn" aria-pressed="false"><span class="voice-btn__n">03</span><span class="voice-btn__body"><span class="voice-btn__name">Vou ter que cortar o que eu gosto?</span><span class="voice-btn__role">Alimentação</span></span><span class="voice-btn__rule"></span></button></li>
+      <li><button class="voice-btn" aria-pressed="false"><span class="voice-btn__n">04</span><span class="voice-btn__body"><span class="voice-btn__name">E se eu sair do plano?</span><span class="voice-btn__role">Acompanhamento</span></span><span class="voice-btn__rule"></span></button></li>
+    </ul>
+    <div class="voices__panel">
+      <blockquote aria-live="polite">
+        <p class="quote" id="quote"></p>
+        <footer>Nathan Lorena — Nutricionista</footer>
+        <a class="btn" data-wa="duvida" href="#contato"><svg class="wa-ico"><use href="#wa"/></svg>Tirar minha dúvida no WhatsApp</a>
+      </blockquote>
+      <div class="portrait rv">
+        <figure><img id="voice-img" src="assets/retrato-rosto.webp" alt="Retrato de Nathan Lorena" loading="lazy" width="640" height="800"></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTATO ============ -->
+<footer class="contact" id="contato">
+  <p class="eyebrow">Vamos começar</p>
+  <h2 class="sec-title" data-lines>Pronto para um plano que você consegue seguir?</h2>
+  <p class="contact__p rv">Agende sua consulta pelo WhatsApp. Eu mesmo respondo e explico como funciona o acompanhamento.</p>
+  <div class="cta-wrap rv" style="--delay:100ms">
+    <a class="cta" data-wa="consulta" href="#contato">Marcar pelo WhatsApp <i aria-hidden="true">↗</i></a>
+    <div class="btn-row">
+      <a class="btn btn--lg" data-wa="consulta" href="#contato"><svg class="wa-ico"><use href="#wa"/></svg>Marcar uma consulta</a>
+      <a class="btn btn--ghost btn--lg" data-wa="analise" href="#contato">Marcar uma análise <span class="arr" aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="foot__l">
+      <p class="foot__sig">Nathan Lorena</p>
+      <p class="foot__sub">Nutricionista · CRN {{PREENCHER}}</p>
+    </div>
+    <nav class="foot__m" aria-label="Redes sociais">
+      <ul>
+        <li><a href="https://www.instagram.com/" target="_blank" rel="noreferrer noopener">Instagram</a></li>
+        <li><a data-wa="consulta" href="#contato">WhatsApp</a></li>
+      </ul>
+    </nav>
+    <div class="foot__r"><p>© <span id="year">2026</span> Nathan Lorena.<br>Todos os direitos reservados.</p></div>
+  </div>
+</footer>
+</main>
+
+<a class="wa-float" id="wa-float" data-wa="consulta" href="#contato" aria-label="Marcar consulta pelo WhatsApp"><svg class="wa-ico"><use href="#wa"/></svg><span>Marcar consulta</span></a>
+
+<script type="importmap">
+{ "imports": { "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.19/dist/lenis.mjs" } }
+</script>
+<script>
+/* ===== Adaptive grid acima de 1920px ===== */
+(function(){
+  const FONT_BASE = 16, BASE_W = 1920, COEF = 0.6666;
+  function applyAdaptiveGrid(){
+    const w = window.innerWidth;
+    const reduction = ((BASE_W - w) / BASE_W) * 100 * COEF;
+    const size = FONT_BASE - (FONT_BASE * reduction) / 100;
+    if (size > FONT_BASE) document.documentElement.style.fontSize = size + "px";
+    else document.documentElement.style.removeProperty("font-size");
+  }
+  applyAdaptiveGrid();
+  addEventListener("resize", applyAdaptiveGrid);
+})();
+</script>
+<script type="module">
+/* ===== WhatsApp: número com DDI e DDD, só dígitos (ex.: 5531999999999) ===== */
+const WHATSAPP = "";
+const WA_MSGS = {
+  consulta: "Olá, Nathan! Vim pelo site e quero marcar uma consulta.",
+  analise:  "Olá, Nathan! Vim pelo site e quero marcar uma análise.",
+  duvida:   "Olá, Nathan! Vim pelo site e tenho uma dúvida antes de agendar.",
+};
+document.querySelectorAll("[data-wa]").forEach(a => {
+  const msg = WA_MSGS[a.dataset.wa] || a.dataset.wa;
+  if (WHATSAPP){ a.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`; a.target = "_blank"; a.rel = "noopener"; }
+});
+if (!WHATSAPP) console.warn("WhatsApp sem número: preencha a constante WHATSAPP no index.html.");
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* marquee: lista duplicada para o loop não ter emenda */
+const mq = document.getElementById("marquee");
+[...mq.children].forEach(n => { const c = n.cloneNode(true); c.setAttribute("aria-hidden", "true"); mq.append(c); });
+
+/* ===== Lenis ===== */
+let lenis = null;
+try {
+  const { default: Lenis } = await import("lenis");
+  lenis = new Lenis({ smoothWheel: true });
+  window.lenis = lenis;
+  const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); };
+  requestAnimationFrame(raf);
+} catch (e) { console.warn("Lenis indisponível, usando rolagem nativa.", e); }
+
+function scrollToEl(el){
+  if (lenis) lenis.scrollTo(el, { duration: 1.4 });
+  else el.scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
+}
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click", (e) => {
+  const id = a.getAttribute("href"); const el = id.length > 1 && document.querySelector(id);
+  if (!el) return;
+  e.preventDefault(); closeMenu(); scrollToEl(el);
+}));
+
+/* nav com fundo depois de rolar */
+const nav = document.getElementById("site-nav");
+const onScroll = () => nav.classList.toggle("scrolled", scrollY > 40);
+addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+/* ===== Divisão de texto ===== */
+function splitLetters(el){
+  const txt = el.textContent.trim(); el.textContent = "";
+  [...txt].forEach((c, i) => { const s = document.createElement("span"); s.className = "ch"; s.textContent = c; s.style.setProperty("--d", (i*52) + "ms"); el.append(s); });
+}
+function splitLines(el){
+  const txt = el.dataset.text || (el.dataset.text = el.textContent.trim().replace(/\s+/g, " "));
+  if (!el.getAttribute("aria-label")) el.setAttribute("aria-label", txt);
+  el.innerHTML = txt.split(" ").map(w => `<span class="wtmp" style="display:inline-block">${w}</span>`).join(" ");
+  const lines = []; let top = null;
+  el.querySelectorAll(".wtmp").forEach(w => { if (w.offsetTop !== top){ lines.push([]); top = w.offsetTop; } lines[lines.length-1].push(w.textContent); });
+  el.innerHTML = lines.map((l, i) => `<span class="ln" aria-hidden="true"><span style="--d:${i*90}ms">${l.join(" ")}</span></span>`).join("");
+}
+document.querySelectorAll("[data-letters]").forEach(splitLetters);
+const lineEls = [...document.querySelectorAll("[data-lines]")];
+lineEls.forEach(splitLines);
+document.querySelectorAll("#roles .ln > span").forEach((s, i) => s.style.setProperty("--d", (i*80) + "ms"));
+let rt; let lastW = innerWidth;
+addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => {
+  placeStudy();
+  if (innerWidth === lastW) return; lastW = innerWidth;
+  lineEls.forEach(el => { el.classList.add("no-anim"); splitLines(el); requestAnimationFrame(() => el.classList.remove("no-anim")); });
+}, 150); });
+
+/* ===== Contador (pacientes) ===== */
+function countUp(dd){
+  const n = parseInt(dd.dataset.count, 10); if (!Number.isFinite(n)) return; // "X" = ainda sem número
+  const pre = dd.dataset.prefix || "", t0 = performance.now(), D = 1600;
+  const step = (t) => { const p = Math.min(1, (t - t0) / D), e = 1 - Math.pow(1 - p, 4);
+    dd.textContent = pre + Math.round(n * e).toLocaleString("pt-BR"); if (p < 1) requestAnimationFrame(step); };
+  if (reduced) dd.textContent = pre + n.toLocaleString("pt-BR"); else requestAnimationFrame(step);
+}
+
+/* ===== Gatilhos ao entrar na tela (uma vez) ===== */
+const io = new IntersectionObserver((entries) => entries.forEach(en => {
+  if (!en.isIntersecting) return;
+  const t = en.target;
+  if (t.matches("[data-lines]")) t.classList.add("revealed"); else t.classList.add("in");
+  t.querySelectorAll("[data-count]").forEach(countUp);
+  io.unobserve(t);
+}), { threshold: 0 });
+document.querySelectorAll("main .rv:not(#hero-desc):not(#hero-cue):not(#hero-ctas), [data-lines]").forEach(el => io.observe(el));
+
+/* ===== Formação acima da cabeça: posição + digitação ===== */
+const study = document.getElementById("hero-study"), heroImg = document.querySelector("#hero-portrait img");
+function placeStudy(){
+  const box = heroImg.parentElement, W = box.clientWidth, H = box.clientHeight;
+  const iw = heroImg.naturalWidth || 1199, ih = heroImg.naturalHeight || 1312;
+  const s = Math.max(W / iw, H / ih), rw = iw * s, rh = ih * s;   // object-fit: cover; posição center bottom
+  const imgTop = H - rh, imgLeft = (W - rw) / 2;
+  study.style.top = (imgTop + rh * 0.03 - 4) + "px";              // o cabelo começa ~3% abaixo do topo da foto
+  study.style.left = (imgLeft + rw * 0.506) + "px";               // centro da cabeça
+  study.classList.add("placed");
+}
+if (heroImg.complete) placeStudy(); else heroImg.addEventListener("load", placeStudy);
+function typeStudy(delay){
+  const box = study.querySelector(".typed");
+  const walker = document.createTreeWalker(box, NodeFilter.SHOW_TEXT);
+  const nodes = []; while (walker.nextNode()) nodes.push({ n: walker.currentNode, t: walker.currentNode.textContent });
+  if (reduced) return;
+  nodes.forEach(o => o.n.textContent = "");
+  const caret = document.createElement("span"); caret.className = "caret";
+  let i = 0, j = 0;
+  const step = () => {
+    if (i >= nodes.length){ setTimeout(() => caret.classList.add("off"), 1600); return; }
+    const o = nodes[i];
+    o.n.textContent = o.t.slice(0, ++j);
+    o.n.parentNode.insertBefore(caret, o.n.nextSibling);
+    if (j >= o.t.length){ i++; j = 0; }
+    setTimeout(step, 28 + Math.random() * 46);
+  };
+  setTimeout(step, delay);
+}
+
+/* ===== Dúvidas (interativo) ===== */
+const VOICES = [
+  { q:"Uma conversa completa sobre a sua rotina, o seu histórico, os seus exames e os seus objetivos, com avaliação. A partir dela eu monto um plano que é seu, e só seu.", img:"assets/retrato-rosto.webp" },
+  { q:"Sim. A caneta tira o apetite, mas o que você come continua decidindo se o peso que sai é gordura ou músculo. O acompanhamento cuida disso e prepara você para quando o tratamento acabar.", img:"assets/retrato-busto.webp" },
+  { q:"Não por regra. O plano parte do que você já come e gosta, e ajusta quantidades e escolhas. Restrição só entra quando existe um motivo clínico.", img:"assets/retrato-maos.webp" },
+  { q:"Vai acontecer, e está tudo bem. O acompanhamento existe justamente para ajustar a rota com você, sem culpa e sem recomeçar do zero.", img:"assets/retrato-rosto.webp" },
+];
+VOICES.forEach(v => { const i = new Image(); i.src = v.img; });
+const quote = document.getElementById("quote"), vimg = document.getElementById("voice-img");
+const btns = [...document.querySelectorAll(".voice-btn")];
+let active = -1, quoteSeen = false;
+function renderQuote(){
+  const words = ("“" + VOICES[active].q + "”").split(" ");
+  quote.classList.remove("play");
+  quote.innerHTML = words.map((w, i) => `<span class="w" style="--d:${i*22}ms">${w}</span>`).join(" ");
+  void quote.offsetWidth;
+  if (quoteSeen) quote.classList.add("play");
+}
+function setActive(i){
+  if (i === active) return; active = i;
+  btns.forEach((b, k) => { b.classList.toggle("active", k === i); b.setAttribute("aria-pressed", k === i); });
+  const src = VOICES[i].img;
+  if (!vimg.getAttribute("src").endsWith(src)){
+    vimg.classList.add("swap");
+    setTimeout(() => { vimg.src = src; vimg.classList.remove("swap"); }, 200);
+  }
+  renderQuote();
+}
+btns.forEach((b, i) => ["pointerenter","focus","click"].forEach(ev => b.addEventListener(ev, (e) => { if (ev === "pointerenter" && e.pointerType !== "mouse") return; setActive(i); })));
+setActive(0);
+new IntersectionObserver((en, o) => { if (en[0].isIntersecting){ quoteSeen = true; quote.classList.add("play"); o.disconnect(); } }, { threshold: 0 }).observe(quote);
+
+/* ===== Botão flutuante: some no hero (já tem botões) e no contato ===== */
+const fab = document.getElementById("wa-float");
+const vis = new Map();
+const fabIO = new IntersectionObserver((en) => {
+  en.forEach(e => vis.set(e.target.id, e.isIntersecting));
+  fab.classList.toggle("hide", !!(vis.get("top") || vis.get("contato")));
+}, { threshold: 0.15 });
+["top", "contato"].forEach(id => fabIO.observe(document.getElementById(id)));
+
+/* ===== Menu mobile ===== */
+const burger = document.getElementById("burger"), menu = document.getElementById("menu");
+const menuItems = [...menu.querySelectorAll("ul a"), menu.querySelector(".menu__cta")];
+function closeMenu(){
+  if (!menu.classList.contains("open")) return;
+  menu.classList.remove("open"); menu.setAttribute("aria-hidden", "true");
+  burger.setAttribute("aria-expanded", "false"); burger.setAttribute("aria-label", "Abrir menu");
+  menuItems.forEach(a => a.style.transitionDelay = "0ms");
+  lenis && lenis.start();
+}
+burger.addEventListener("click", () => {
+  if (menu.classList.contains("open")) return closeMenu();
+  menuItems.forEach((a, i) => a.style.transitionDelay = (120 + i*60) + "ms");
+  menu.classList.add("open"); menu.setAttribute("aria-hidden", "false");
+  burger.setAttribute("aria-expanded", "true"); burger.setAttribute("aria-label", "Fechar menu");
+  lenis && lenis.stop();
+});
+menu.querySelectorAll(".menu__cta a").forEach(a => a.addEventListener("click", closeMenu));
+addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
+
+/* ===== Preloader + entrada do hero ===== */
+const pre = document.getElementById("preloader"), preN = document.getElementById("pre-n"), preBar = document.getElementById("pre-bar");
+const nameLines = document.querySelectorAll(".hero__name .name-line");
+const roles = document.getElementById("roles");
+const showIn = (id, t) => setTimeout(() => document.getElementById(id).classList.add("in"), t);
+function heroReveal(base){
+  setTimeout(() => nameLines[0].classList.add("go"), base);
+  setTimeout(() => nameLines[1].classList.add("go"), base + 240);
+  setTimeout(() => roles.classList.add("revealed"), base + 200);
+  showIn("hero-desc", base + 400);
+  showIn("hero-ctas", base + 560);
+  showIn("hero-cue", base + 900);
+  setTimeout(() => fab.classList.add("show"), base + 1200);
+  typeStudy(base + 900);
+}
+if (reduced){
+  pre.remove();
+  nameLines.forEach(l => l.classList.add("go")); roles.classList.add("revealed");
+  document.querySelectorAll(".rv").forEach(el => el.classList.add("in"));
+  document.querySelectorAll("[data-count]").forEach(countUp);
+  fab.classList.add("show");
+} else {
+  lenis && lenis.stop(); history.scrollRestoration = "manual"; window.scrollTo(0, 0);
+  const t0 = performance.now(), COUNT = 2000;
+  const tick = (t) => {
+    const p = Math.min(1, (t - t0) / COUNT);
+    preN.textContent = Math.round(p * 100); preBar.style.transform = `scaleX(${p})`;
+    if (p < 1) return requestAnimationFrame(tick);
+    pre.classList.add("fade");
+    setTimeout(() => {
+      pre.classList.add("wipe");
+      pre.addEventListener("transitionend", function end(e){
+        if (e.target !== pre) return;
+        pre.removeEventListener("transitionend", end);
+        pre.classList.add("done"); pre.setAttribute("aria-hidden", "true");
+        lenis && lenis.start();
+      });
+    }, 300 + 200);
+  };
+  requestAnimationFrame(tick);
+  heroReveal(2500);
+}
+</script>
+</body>
+</html>
